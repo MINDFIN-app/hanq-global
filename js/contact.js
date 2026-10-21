@@ -86,6 +86,7 @@
       email: val('email'),
       countries: [].slice.call(form.querySelectorAll('input[name="countries"]:checked')).map(function (b) { return b.value; }),
       product: val('product'),
+      productName: form.elements.product.value ? form.elements.product.selectedOptions[0].textContent : '',
       time: val('time'),
       message: val('message'),
       consent: form.elements.consent.checked,

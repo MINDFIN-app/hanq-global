@@ -45,5 +45,24 @@
     });
   });
 
-  select(0);
+  /* 다른 페이지 메뉴에서 index.html#pane-sg 처럼 들어오면(또는 주소의 # 만 바뀌면) 그 나라 탭을 고르고 Top 3 로 이동 */
+  function scrollTop3() {
+    var top3 = document.getElementById('top3');
+    if (top3) top3.scrollIntoView();
+  }
+  function fromHash() {
+    var m = /^#pane-([a-z]{2})$/.exec(window.location.hash);
+    var i = m ? indexOf(m[1]) : -1;
+    if (i < 0) return false;
+    select(i);
+    return true;
+  }
+  if (fromHash()) {
+    /* 브라우저가 로딩 끝에 #pane-xx 로 다시 스크롤하므로, 그 뒤에 탭 줄이 보이도록 맞춘다 */
+    if (document.readyState === 'complete') scrollTop3();
+    else window.addEventListener('load', function () { setTimeout(scrollTop3, 0); });
+  } else {
+    select(0);
+  }
+  window.addEventListener('hashchange', function () { if (fromHash()) scrollTop3(); });
 })();
