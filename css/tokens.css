@@ -1,0 +1,36 @@
+/* hanQ 글로벌 금융 — 디자인 토큰 (PROCEDURE 3-2). 색·글꼴 값은 이 파일에만 둔다. */
+:root {
+  --navy: #0B1F35;
+  --navy-deep: #081726;
+  --panel: #0E2742;
+  --sky: #8DB4E2;
+  --link: #1D5FA8;
+  --ink: #0F1B2A;
+  --muted: #4B5768;
+  --body: #26313F;
+  --paper: #F4F6F9;
+  --paper-hover: #EAF0F6;
+  --line: #D6DDE6;
+  --line-strong: #C8D1DC;
+  --on-navy: #C9D6E6;
+  --on-navy-strong: #E6EDF5;
+  --on-navy-faint: #8FA3BA;
+  --error: #B03A2E;
+  --veil-open: rgba(11, 31, 53, .68);
+  --veil-closed: rgba(11, 31, 53, .55);
+  --veil-product: rgba(11, 31, 53, .7);
+  --veil-mobile: rgba(11, 31, 53, .8);
+
+  --font-ko: 'Noto Sans KR', system-ui, -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --font-num: 'Inter Tight', 'Noto Sans KR', system-ui, sans-serif;
+
+  --ease-out: cubic-bezier(.2, .8, .1, 1);
+  --ease-inout: cubic-bezier(.7, 0, .2, 1);
+  --ease-panel: cubic-bezier(.7, 0, .15, 1);
+
+  --wrap: 1280px;
+  --gutter: 40px;
+}
+@media (max-width: 900px) {
+  :root { --gutter: 20px; }
+}
