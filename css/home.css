@@ -96,6 +96,9 @@ html:not(.js) .acc-mini { display: none; }
 html:not(.js) .tabs { display: none; }
 html:not(.js) .pane[hidden] { display: block; }
 .pane { animation: fadeIn .6s both; }
+.pane-more { display: inline-flex; align-items: center; gap: 10px; margin-top: 40px; color: var(--link); font-size: 15px; font-weight: 500; text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 4px; }
+.pane-more .arr { transition: transform .4s var(--ease-out); }
+.pane-more:hover .arr { transform: translateX(6px); }
 .pane-title { display: none; margin: 56px 0 0; font-size: 26px; font-weight: 500; }
 html:not(.js) .pane-title { display: flex; align-items: center; gap: 12px; }
 .pane-title img { width: 36px; height: 27px; object-fit: cover; }
