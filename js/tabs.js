@@ -1,6 +1,6 @@
 /* 홈 판매 Top 3 나라 탭 (PROCEDURE 1-5)
    - 좌우 화살표·Home·End 로 이동. 패널을 다시 보이면 카드 등장 애니메이션이 다시 돈다.
-   - 아코디언의 'Top 3 리서치' 링크(data-tab-target)는 해당 나라 탭을 고른 뒤 #top3 으로 이동한다.
+   - 히어로 슬라이드·나라 카드·메뉴의 'Top 3' 링크(data-tab-target)는 해당 나라 탭을 고른 뒤 #top3 으로 이동한다.
    - JS 가 없으면 탭은 숨고 다섯 나라 패널이 모두 차례로 보인다(home.css). */
 (function () {
   'use strict';

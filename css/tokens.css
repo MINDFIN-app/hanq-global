@@ -1,36 +1,44 @@
-/* hanQ 글로벌 금융 — 디자인 토큰 (PROCEDURE 3-2). 색·글꼴 값은 이 파일에만 둔다. */
+/* hanQ 글로벌 금융 — 디자인 토큰 (PROCEDURE 3-2). 색·글꼴·곡률·움직임 값은 이 파일에만 둔다. */
 :root {
-  --navy: #0B1F35;
-  --navy-deep: #081726;
-  --panel: #0E2742;
-  --sky: #8DB4E2;
-  --link: #1D5FA8;
-  --ink: #0F1B2A;
-  --muted: #4B5768;
-  --body: #26313F;
-  --paper: #F4F6F9;
-  --paper-hover: #EAF0F6;
-  --line: #D6DDE6;
-  --line-strong: #C8D1DC;
-  --on-navy: #C9D6E6;
-  --on-navy-strong: #E6EDF5;
-  --on-navy-faint: #8FA3BA;
-  --error: #B03A2E;
-  --veil-open: rgba(11, 31, 53, .68);
-  --veil-closed: rgba(11, 31, 53, .55);
-  --veil-product: rgba(11, 31, 53, .7);
-  --veil-mobile: rgba(11, 31, 53, .8);
+  /* 흰 바탕 · 검은 글자 · 와인색 강조 (2026-10-22 개편) */
+  --ink: #161616;
+  --body: #313131;
+  --muted: #5d5d5d;
+  --line: #e2e0dd;
+  --line-strong: #c9c6c2;
+  --paper: #f5f4f1;
+  --paper-hover: #eceae6;
+  --wine: #8c1b33;
+  --wine-hover: #70142a;
+  --wine-deep: #4b0d1f;
+  --wine-tint: #f8eef0;
+  --link: #1d5fa8;
+  --on-dark: #f4ecee;
+  --on-dark-muted: #d4c3c8;
+  --error: #b3261e;
+  --scrim: rgba(22, 22, 22, .38);
+  --shadow-sm: 0 1px 2px rgba(22, 22, 22, .06), 0 1px 3px rgba(22, 22, 22, .08);
+  --shadow-md: 0 6px 18px rgba(22, 22, 22, .10), 0 2px 6px rgba(22, 22, 22, .06);
+  --shadow-lg: 0 18px 48px rgba(22, 22, 22, .16);
 
   --font-ko: 'Noto Sans KR', system-ui, -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   --font-num: 'Inter Tight', 'Noto Sans KR', system-ui, sans-serif;
 
+  --radius: 12px;
+  --radius-sm: 8px;
+  --pill: 999px;
+
   --ease-out: cubic-bezier(.2, .8, .1, 1);
-  --ease-inout: cubic-bezier(.7, 0, .2, 1);
-  --ease-panel: cubic-bezier(.7, 0, .15, 1);
+  --ease-inout: cubic-bezier(.65, 0, .35, 1);
+  --ease-spring: cubic-bezier(.34, 1.4, .64, 1);
+  --t-fast: .2s;
+  --t-med: .38s;
+  --t-slow: .7s;
 
   --wrap: 1280px;
   --gutter: 40px;
+  --hdr-h: 118px;
 }
 @media (max-width: 900px) {
-  :root { --gutter: 20px; }
+  :root { --gutter: 20px; --hdr-h: 64px; }
 }

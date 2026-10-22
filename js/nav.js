@@ -1,87 +1,120 @@
-/* 머리글 아코디언 메뉴 (PROCEDURE 1-2)
-   - 데스크톱: 메뉴 버튼을 누르면 머리글 아래로 패널이 펼쳐지며 내용을 밀어 내린다. 한 번에 하나.
-   - 900px 이하: '메뉴' 버튼 → 세로 아코디언. 안의 '나라별 상품'은 나라 → 보험·투자 Top 3 로 한 번 더 펼쳐진다.
-   - Esc 로 닫고 버튼으로 초점을 돌려준다. 바깥을 누르거나 메뉴 속 링크를 누르면 닫힌다. */
+/* 머리글 (PROCEDURE 1-2)
+   - 데스크톱: 아랫줄 메뉴 버튼을 누르면 내용 위로 드롭다운 패널이 펼쳐지고 뒤 화면이 어두워진다. 한 번에 하나.
+     Esc·어두운 막·메뉴 속 링크로 닫힌다. 마우스 올림으로는 열리지 않는다.
+   - 스크롤을 내리면 머리글이 숨고, 올리면 다시 나타난다. 메뉴가 열려 있거나 머리글에 초점이 있으면 숨지 않는다.
+   - 900px 이하: '메뉴' 버튼 → 오른쪽에서 밀려 나오는 서랍(안은 아코디언). 서랍이 열리면 뒤 페이지 스크롤을 막고
+     Tab 이 서랍 안에서만 돈다. Esc·막·닫기 버튼으로 닫고 '메뉴' 버튼으로 초점을 돌려준다. */
 (function () {
   'use strict';
   var hdr = document.querySelector('[data-hdr]');
   if (!hdr) return;
+  var root = document.documentElement;
+  var drawer = document.getElementById('mnav');
+  var scrim = document.querySelector('[data-scrim]');
   var toggle = hdr.querySelector('.menu-toggle');
+  var closeBtn = drawer ? drawer.querySelector('.drawer-close') : null;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function setExpanded(btn, on) { btn.setAttribute('aria-expanded', on ? 'true' : 'false'); }
 
-  /* 한 그룹 안에서 하나만 펼치는 아코디언. itemOf(btn) 이 펼침 표시(is-open)를 달 요소를 돌려준다. */
-  function group(buttons, itemOf, allowNone) {
+  /* 한 그룹 안에서 하나만 펼치는 아코디언(서랍 속 메뉴·나라). itemOf(btn) 이 펼침 표시(is-open)를 달 요소. */
+  function group(buttons, itemOf) {
     buttons.forEach(function (btn) {
       btn.addEventListener('click', function () {
         var on = btn.getAttribute('aria-expanded') !== 'true';
-        if (!on && !allowNone) return;
-        buttons.forEach(function (other) {
-          setExpanded(other, false);
-          itemOf(other).classList.remove('is-open');
-        });
-        if (on) {
-          setExpanded(btn, true);
-          itemOf(btn).classList.add('is-open');
-        }
+        buttons.forEach(function (other) { setExpanded(other, false); itemOf(other).classList.remove('is-open'); });
+        if (on) { setExpanded(btn, true); itemOf(btn).classList.add('is-open'); }
       });
     });
   }
 
+  /* ---------- 데스크톱 드롭다운 ---------- */
   var topButtons = [].slice.call(hdr.querySelectorAll('.gnav-btn'));
   function panelOf(btn) { return document.getElementById(btn.getAttribute('aria-controls')); }
-  group(topButtons, panelOf, true);
-
-  group([].slice.call(hdr.querySelectorAll('.macc-btn')), function (btn) { return btn.parentNode; }, true);
-
-  [].slice.call(hdr.querySelectorAll('.cacc')).forEach(function (acc) {
-    group([].slice.call(acc.querySelectorAll('.cacc-btn')), function (btn) { return btn.parentNode; }, true);
-  });
-
   function openTop() {
-    for (var i = 0; i < topButtons.length; i++) {
-      if (topButtons[i].getAttribute('aria-expanded') === 'true') return topButtons[i];
-    }
+    for (var i = 0; i < topButtons.length; i++) if (topButtons[i].getAttribute('aria-expanded') === 'true') return topButtons[i];
     return null;
   }
+  function drawerOpen() { return !!drawer && drawer.classList.contains('is-open'); }
+  function syncScrim() { if (scrim) scrim.classList.toggle('is-on', !!openTop() || drawerOpen()); }
 
-  function closeAll(instant) {
-    if (instant) hdr.classList.add('no-anim');
-    topButtons.forEach(function (btn) { setExpanded(btn, false); panelOf(btn).classList.remove('is-open'); });
-    hdr.classList.remove('menu-open');
-    if (toggle) setExpanded(toggle, false);
-    if (instant) {
-      void hdr.offsetHeight;
-      requestAnimationFrame(function () { hdr.classList.remove('no-anim'); });
-    }
+  function openPanel(btn) {
+    topButtons.forEach(function (b) { var on = b === btn; setExpanded(b, on); panelOf(b).classList.toggle('is-open', on); });
+    showHdr();
+    syncScrim();
   }
+  function closePanels(instant) {
+    if (instant) hdr.classList.add('no-anim');
+    topButtons.forEach(function (b) { setExpanded(b, false); panelOf(b).classList.remove('is-open'); });
+    syncScrim();
+    if (instant) { void hdr.offsetHeight; requestAnimationFrame(function () { hdr.classList.remove('no-anim'); }); }
+  }
+  topButtons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      if (btn.getAttribute('aria-expanded') === 'true') closePanels(false);
+      else openPanel(btn);
+    });
+  });
 
-  if (toggle) {
-    toggle.addEventListener('click', function () {
-      var on = !hdr.classList.contains('menu-open');
-      hdr.classList.toggle('menu-open', on);
-      setExpanded(toggle, on);
+  /* ---------- 모바일 서랍 ---------- */
+  var lastFocus = null;
+  function focusables() {
+    return [].slice.call(drawer.querySelectorAll('a[href], button:not([disabled])')).filter(function (el) {
+      return el.offsetParent !== null && !el.closest('[aria-hidden="true"]') && getComputedStyle(el).visibility !== 'hidden';
     });
   }
+  function openDrawer() {
+    if (!drawer) return;
+    lastFocus = document.activeElement;
+    drawer.classList.add('is-open');
+    document.body.classList.add('lock');
+    setExpanded(toggle, true);
+    syncScrim();
+    setTimeout(function () { if (closeBtn) closeBtn.focus(); }, reduce ? 0 : 60);
+  }
+  function closeDrawer(returnFocus) {
+    if (!drawerOpen()) return;
+    drawer.classList.remove('is-open');
+    document.body.classList.remove('lock');
+    setExpanded(toggle, false);
+    syncScrim();
+    if (returnFocus && toggle) toggle.focus();
+  }
+  if (toggle) toggle.addEventListener('click', function () { if (drawerOpen()) closeDrawer(true); else openDrawer(); });
+  if (closeBtn) closeBtn.addEventListener('click', function () { closeDrawer(true); });
+  if (drawer) {
+    group([].slice.call(drawer.querySelectorAll('.macc-btn')), function (b) { return b.parentNode; });
+    [].slice.call(drawer.querySelectorAll('.cacc')).forEach(function (acc) {
+      group([].slice.call(acc.querySelectorAll('.cacc-btn')), function (b) { return b.parentNode; });
+    });
+    drawer.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      var f = focusables();
+      if (!f.length) return;
+      if (e.shiftKey && document.activeElement === f[0]) { e.preventDefault(); f[f.length - 1].focus(); }
+      else if (!e.shiftKey && document.activeElement === f[f.length - 1]) { e.preventDefault(); f[0].focus(); }
+    });
+  }
+  if (scrim) scrim.addEventListener('click', function () { closePanels(false); closeDrawer(false); });
+  window.addEventListener('resize', function () { if (window.innerWidth > 900) closeDrawer(false); });
 
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;
+    if (drawerOpen()) { closeDrawer(true); return; }
     var btn = openTop();
-    if (btn) { closeAll(false); btn.focus(); }
-    else if (hdr.classList.contains('menu-open')) { closeAll(false); toggle.focus(); }
+    if (btn) { closePanels(false); btn.focus(); }
   });
-
   document.addEventListener('click', function (e) {
-    if (!hdr.contains(e.target) && (openTop() || hdr.classList.contains('menu-open'))) closeAll(false);
+    if (openTop() && !hdr.contains(e.target)) closePanels(false);
   });
 
-  /* 메뉴 속 링크: 패널을 즉시 닫은 뒤 이동한다. 같은 페이지 앵커면 닫힌 높이 기준으로 다시 스크롤한다. */
-  hdr.addEventListener('click', function (e) {
-    var a = e.target.closest ? e.target.closest('.gpanels a, .mnav a') : null;
+  /* 메뉴·서랍 속 링크: 즉시 닫은 뒤 이동. 같은 페이지 앵커면 닫힌 상태 기준으로 다시 스크롤한다. */
+  function onLink(e) {
+    var a = e.target.closest ? e.target.closest('a') : null;
     if (!a) return;
     var href = a.getAttribute('href') || '';
-    closeAll(true);
+    closePanels(true);
+    closeDrawer(false);
     if (href.charAt(0) === '#') {
       var target = document.getElementById(href.slice(1));
       if (target) {
@@ -92,5 +125,27 @@
         });
       }
     }
-  });
+  }
+  [].slice.call(hdr.querySelectorAll('.gpanels')).forEach(function (el) { el.addEventListener('click', onLink); });
+  if (drawer) drawer.querySelector('.drawer-body').addEventListener('click', onLink);
+
+  /* ---------- 스크롤에 따라 숨김·나타남 ---------- */
+  var lastY = window.scrollY, ticking = false;
+  function showHdr() { hdr.classList.remove('is-hidden'); root.classList.remove('hdr-gone'); }
+  function hideHdr() { hdr.classList.add('is-hidden'); root.classList.add('hdr-gone'); }
+  function onScroll() {
+    ticking = false;
+    var y = window.scrollY, dy = y - lastY;
+    hdr.classList.toggle('is-solid', y > 4);
+    if (openTop() || drawerOpen() || hdr.contains(document.activeElement)) { showHdr(); lastY = y; return; }
+    if (y < hdr.offsetHeight + 40) showHdr();
+    else if (dy > 6) hideHdr();
+    else if (dy < -6) showHdr();
+    lastY = y;
+  }
+  window.addEventListener('scroll', function () {
+    if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+  }, { passive: true });
+  hdr.addEventListener('focusin', showHdr);
+  onScroll();
 })();
