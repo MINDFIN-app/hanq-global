@@ -1,7 +1,7 @@
 /* 홈 판매 Top 3 나라 탭 (PROCEDURE 1-5)
    - 좌우 화살표·Home·End 로 이동. 패널을 다시 보이면 카드 등장 애니메이션이 다시 돈다.
    - 히어로 슬라이드·나라 카드·메뉴의 'Top 3' 링크(data-tab-target)는 해당 나라 탭을 고른 뒤 #top3 으로 이동한다.
-   - JS 가 없으면 탭은 숨고 다섯 나라 패널이 모두 차례로 보인다(home.css). */
+   - JS 가 없으면 탭은 숨고 나라별 패널이 모두 차례로 보인다(home.css). */
 (function () {
   'use strict';
   var list = document.querySelector('[role="tablist"]');
@@ -16,7 +16,15 @@
       var pane = document.getElementById(tab.getAttribute('aria-controls'));
       if (pane) pane.hidden = !on;
     });
+    reveal(tabs[index]);
     if (focus) tabs[index].focus();
+  }
+
+  /* 900px 이하에서 탭 줄이 옆으로 넘칠 때, 고른 탭이 줄 가운데에 오도록 탭 줄만 옆으로 민다(페이지는 움직이지 않음) */
+  function reveal(tab) {
+    if (list.scrollWidth <= list.clientWidth) return;
+    var offset = tab.getBoundingClientRect().left - list.getBoundingClientRect().left;
+    list.scrollLeft = Math.max(0, list.scrollLeft + offset - (list.clientWidth - tab.offsetWidth) / 2);
   }
 
   function indexOf(code) {

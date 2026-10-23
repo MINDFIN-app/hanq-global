@@ -71,8 +71,8 @@ html:not(.js) .gnav-btn { display: none; }
 .gp-more .arr, .tlink .arr { display: inline-block; transition: transform var(--t-med) var(--ease-out); }
 .gp-more:hover .arr, .tlink:hover .arr { transform: translateX(5px); }
 
-/* 나라별 상품 — 5열 메가 메뉴 */
-.mega { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0 24px; }
+/* 나라별 상품 — 6열 메가 메뉴 */
+.mega { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0 20px; }
 .mega-col { min-width: 0; }
 .mega-h { display: flex; align-items: center; gap: 10px; padding-bottom: 12px; border-bottom: 2px solid var(--ink); font-size: 17px; font-weight: 700; }
 .mega-h img { width: 26px; height: 19px; object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px var(--line); }
