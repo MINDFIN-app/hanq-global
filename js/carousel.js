@@ -52,8 +52,16 @@
   dots.forEach(function (d, k) { d.addEventListener('click', function () { show(k); }); });
   pauseBtn.addEventListener('click', function () { setPaused(!userPaused); });
 
-  car.addEventListener('mouseenter', function () { hover = true; schedule(); });
-  car.addEventListener('mouseleave', function () { hover = false; schedule(); });
+  /* 진짜 마우스를 올렸을 때만 멈춘다 — 손가락으로 누르면 브라우저가 '마우스 올림'을 흉내 내고 '떠남'은 보내지 않아
+     자동 넘김이 계속 멈춰 있게 된다(2026-10-23 발견). */
+  function isMouse(e) { return !e.pointerType || e.pointerType === 'mouse'; }
+  if (window.PointerEvent) {
+    car.addEventListener('pointerenter', function (e) { if (isMouse(e)) { hover = true; schedule(); } });
+    car.addEventListener('pointerleave', function (e) { if (isMouse(e)) { hover = false; schedule(); } });
+  } else {
+    car.addEventListener('mouseenter', function () { hover = true; schedule(); });
+    car.addEventListener('mouseleave', function () { hover = false; schedule(); });
+  }
   car.addEventListener('focusin', function () { focusIn = true; schedule(); });
   car.addEventListener('focusout', function (e) { if (!car.contains(e.relatedTarget)) { focusIn = false; schedule(); } });
   car.addEventListener('keydown', function (e) {

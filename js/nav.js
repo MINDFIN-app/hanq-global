@@ -2,8 +2,9 @@
    - 데스크톱: 아랫줄 메뉴 버튼을 누르면 내용 위로 드롭다운 패널이 펼쳐지고 뒤 화면이 어두워진다. 한 번에 하나.
      Esc·어두운 막·메뉴 속 링크로 닫힌다. 마우스 올림으로는 열리지 않는다.
    - 스크롤을 내리면 머리글이 숨고, 올리면 다시 나타난다. 메뉴가 열려 있거나 머리글에 초점이 있으면 숨지 않는다.
-   - 900px 이하: '메뉴' 버튼 → 오른쪽에서 밀려 나오는 서랍(안은 아코디언). 서랍이 열리면 뒤 페이지 스크롤을 막고
-     Tab 이 서랍 안에서만 돈다. Esc·막·닫기 버튼으로 닫고 '메뉴' 버튼으로 초점을 돌려준다. */
+   - 900px 이하(또는 가로로 눕힌 폰): '메뉴' 버튼 → 오른쪽에서 밀려 나오는 서랍(안은 아코디언). 서랍이 열리면 뒤 페이지
+     스크롤을 막고 Tab 이 서랍 안에서만 돈다. Esc·막·닫기 버튼으로 닫고 '메뉴' 버튼으로 초점을 돌려준다.
+   - 화면을 돌리거나 창 크기가 바뀌어 휴대폰↔데스크톱 머리글이 바뀌면, 열려 있던 서랍·드롭다운을 닫는다. */
 (function () {
   'use strict';
   var hdr = document.querySelector('[data-hdr]');
@@ -14,6 +15,8 @@
   var toggle = hdr.querySelector('.menu-toggle');
   var closeBtn = drawer ? drawer.querySelector('.drawer-close') : null;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* 휴대폰 머리글 조건 — tokens.css·base.css 의 미디어 조건과 같아야 한다 */
+  var MOBILE = '(max-width: 900px), (orientation: landscape) and (max-height: 500px)';
 
   function setExpanded(btn, on) { btn.setAttribute('aria-expanded', on ? 'true' : 'false'); }
 
@@ -96,7 +99,11 @@
     });
   }
   if (scrim) scrim.addEventListener('click', function () { closePanels(false); closeDrawer(false); });
-  window.addEventListener('resize', function () { if (window.innerWidth > 900) closeDrawer(false); });
+  if (window.matchMedia) {
+    var mq = window.matchMedia(MOBILE);
+    var onMq = function () { if (mq.matches) closePanels(true); else closeDrawer(false); };
+    if (mq.addEventListener) mq.addEventListener('change', onMq); else if (mq.addListener) mq.addListener(onMq);
+  }
 
   document.addEventListener('keydown', function (e) {
     if (e.key !== 'Escape') return;

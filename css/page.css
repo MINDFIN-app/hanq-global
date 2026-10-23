@@ -6,7 +6,6 @@
 
 .svc { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 44px; }
 .svc > div { border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; transition: transform var(--t-med) var(--ease-out), box-shadow var(--t-med), border-color var(--t-fast); }
-.svc > div:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--ink); }
 .svc .m-no { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--wine); color: #fff; font-family: var(--font-num); font-size: 13px; font-weight: 700; }
 .svc h3 { margin: 18px 0 0; font-size: 18px; font-weight: 800; letter-spacing: -.02em; }
 .svc p { margin: 10px 0 0; font-size: 15px; line-height: 1.75; color: var(--muted); }
@@ -27,6 +26,7 @@
 .credits { list-style: none; margin: 28px 0 0; padding: 0; border-top: 1px solid var(--line); }
 .credits li { padding: 14px 0; border-bottom: 1px solid var(--line); font-size: 14px; line-height: 1.7; color: var(--muted); }
 .credits b { color: var(--ink); }
+.credits-h { margin: 40px 0 0; font-size: 20px; font-weight: 800; letter-spacing: -.02em; }
 
 /* 문의 */
 .cf { display: flex; flex-wrap: wrap; gap: 56px; padding-top: 72px; padding-bottom: 96px; }
@@ -40,14 +40,12 @@
   border: 1.5px solid var(--line-strong); border-radius: var(--radius-sm); padding: 14px 16px; transition: border-color var(--t-fast), box-shadow var(--t-fast);
 }
 .field textarea { min-height: 180px; resize: vertical; line-height: 1.7; }
-.field input:hover, .field select:hover, .field textarea:hover { border-color: var(--muted); }
 .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 4px rgba(22, 22, 22, .08); }
 .field .hint { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .field .err { margin-top: 8px; font-size: 14px; color: var(--error); font-weight: 500; }
 .field.invalid input, .field.invalid textarea, .field.invalid select { border-color: var(--error); }
 .checks { display: flex; flex-wrap: wrap; gap: 8px; }
 .checks label { display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 18px 0 14px; border: 1.5px solid var(--line-strong); border-radius: var(--pill); cursor: pointer; font-size: 15px; font-weight: 500; transition: border-color var(--t-fast), background var(--t-fast); }
-.checks label:hover { border-color: var(--ink); }
 .checks input { width: 18px; height: 18px; accent-color: var(--wine); }
 .checks img { width: 24px; height: 18px; object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px var(--line); }
 .checks label:has(input:checked) { border-color: var(--wine); background: var(--wine-tint); }
@@ -98,4 +96,20 @@
   .consent dl { grid-template-columns: minmax(0, 1fr); }
   .done { padding: 30px 20px; }
   .nf .n { font-size: 100px; }
+  .flow li::before { font-size: 12px; }
+}
+/* 손가락으로 누르는 기기·작은 화면 — 동의 줄 전체를 누르기 쉬운 높이로 */
+@media (pointer: coarse), (max-width: 900px) {
+  .consent .agree { min-height: 44px; }
+}
+/* 태블릿 세로(600~900px) — 서비스·상담 순서는 두 칸 */
+@media (min-width: 600px) and (max-width: 900px) {
+  .svc, .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* 마우스를 올릴 수 있는 기기에서만 — 손가락 터치에서는 누른 뒤 효과(들썩임·색 반전)가 남지 않게 (PROCEDURE 3-7) */
+@media (hover: hover) {
+  .svc > div:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--ink); }
+  .field input:hover, .field select:hover, .field textarea:hover { border-color: var(--muted); }
+  .checks label:hover { border-color: var(--ink); }
 }

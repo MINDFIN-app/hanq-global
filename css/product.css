@@ -49,13 +49,11 @@
 .ref { font-family: var(--font-num); font-size: 12px; font-weight: 600; color: var(--link); vertical-align: super; margin-left: 2px; }
 .steps { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; counter-reset: st; }
 .step { background: var(--paper); border-radius: var(--radius); padding: 22px 20px; transition: transform var(--t-med) var(--ease-out), box-shadow var(--t-med); }
-.step:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); background: #fff; }
 .sn { display: inline-grid; place-items: center; min-width: 30px; height: 30px; padding: 0 8px; border-radius: var(--pill); background: var(--ink); color: #fff; font-family: var(--font-num); font-size: 11px; font-weight: 700; letter-spacing: .06em; }
 .st { font-size: 17px; font-weight: 700; margin-top: 14px; letter-spacing: -.01em; }
 .sd { font-size: 15px; line-height: 1.7; color: var(--muted); margin-top: 8px; }
 .feat { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
 .ft { border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; transition: border-color var(--t-fast), transform var(--t-med) var(--ease-out), box-shadow var(--t-med); }
-.ft:hover { border-color: var(--ink); transform: translateY(-4px); box-shadow: var(--shadow-md); }
 .ft h3 { margin: 0; font-size: 17px; font-weight: 700; letter-spacing: -.01em; }
 .blk .ft p { font-size: 15px; line-height: 1.7; color: var(--muted); margin: 10px 0 0; }
 .risk { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
@@ -78,21 +76,37 @@
 .side .btn { margin-top: 22px; width: 100%; }
 .side-link { display: flex; justify-content: space-between; gap: 12px; margin-top: 16px; font-size: 14px; font-weight: 700; color: var(--link); text-decoration: none; }
 .side-link .arr { transition: transform var(--t-med) var(--ease-out); }
-.side-link:hover .arr { transform: translateX(5px); }
+
+/* 대표 상품 (보험 유형 페이지) — 회사 공식 홈페이지에서 고른 실제 판매 상품과 로고 */
+.blk .picks-note { font-size: 14px; line-height: 1.8; color: var(--muted); margin: -8px 0 20px; }
+.pick-list { display: grid; gap: 14px; }
+.pick { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 20px; align-items: start; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
+.pick-logo { width: 132px; height: 64px; padding: 10px 12px; }
+.pick-co { font-size: 12px; font-weight: 700; color: var(--wine); }
+.pick h3 { margin: 4px 0 0; font-size: 19px; font-weight: 800; line-height: 1.4; letter-spacing: -.02em; }
+.pick-type { font-size: 13px; color: var(--muted); margin-top: 4px; }
+.pick ul { list-style: none; margin: 12px 0 0; padding: 0; }
+.pick li { position: relative; padding-left: 14px; font-size: 15px; line-height: 1.7; color: var(--body); }
+.pick li + li { margin-top: 4px; }
+.pick li::before { content: ''; position: absolute; left: 0; top: .72em; width: 5px; height: 5px; border-radius: 50%; background: var(--wine); }
+.pick-links { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 20px; margin-top: 12px; }
+.pick-src { display: inline-flex; align-items: center; min-height: 32px; font-size: 13px; color: var(--link); }
+/* 회사 상품 페이지 머리 — 순위 숫자 대신 회사 로고 */
+.ph-logo { width: 168px; height: 84px; padding: 14px 18px; box-shadow: var(--shadow-sm); }
+.ph-row:has(.ph-logo) { flex-direction: column; align-items: flex-start; gap: 18px; }
+.ph-row:has(.ph-logo) .ph-title { font-size: clamp(28px, 3vw, 42px); line-height: 1.2; }
 
 /* 이전·다음 */
 .pn { background: var(--paper); margin-top: 40px; padding: 40px 0; }
 .pn-in { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .pn a { display: block; padding: 26px 28px; background: #fff; border-radius: var(--radius); text-decoration: none; color: var(--ink); box-shadow: var(--shadow-sm); transition: transform var(--t-med) var(--ease-out), box-shadow var(--t-med); }
 .pn a + a { text-align: right; }
-.pn a:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); color: var(--ink); }
 .pn small { display: block; font-size: 13px; font-weight: 700; color: var(--wine); }
 .pn strong { display: block; font-size: 20px; font-weight: 800; margin-top: 8px; letter-spacing: -.02em; }
 
 /* 은행·증권사 회사 카드 */
 .firm { border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow-sm); transition: box-shadow var(--t-med), border-color var(--t-fast); }
 .firm + .firm { margin-top: 16px; }
-.firm:hover { box-shadow: var(--shadow-md); border-color: var(--line-strong); }
 .firm-top { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 8px 22px; align-items: center; }
 .firm-rk { font-family: var(--font-num); font-weight: 700; font-size: 64px; line-height: .8; letter-spacing: -.06em; color: var(--wine); }
 .firm-k { font-size: 12px; font-weight: 700; color: var(--wine); }
@@ -123,6 +137,9 @@
   .ph-in { padding-top: 20px; padding-bottom: 40px; }
   .ph-grid { grid-template-columns: minmax(0, 1fr); gap: 28px; margin-top: 20px; }
   .ph-rank { font-size: 72px; }
+  .ph-logo { width: 128px; height: 64px; padding: 10px 14px; }
+  .pick { grid-template-columns: minmax(0, 1fr); gap: 14px; padding: 18px; }
+  .pick-logo { width: 120px; height: 56px; }
   .kpi, .steps, .feat, .pn-in { grid-template-columns: minmax(0, 1fr); }
   .risk li { grid-template-columns: minmax(0, 1fr); }
   .kr { padding: 28px 20px 16px; }
@@ -135,4 +152,40 @@
   .firm-rk { font-size: 48px; }
   .firm-id h3 { font-size: 21px; }
   .firm-cols { grid-template-columns: minmax(0, 1fr); }
+}
+/* 손가락으로 누르는 기기·작은 화면 — 경로·옆 링크도 누르기 쉬운 높이로 */
+@media (pointer: coarse), (max-width: 900px) {
+  .crumb { gap: 0; align-items: center; margin-left: -8px; }
+  .crumb a { display: inline-flex; align-items: center; min-height: 32px; padding: 0 8px; }
+  .crumb > span:last-child { padding-left: 8px; }
+  .side-link { align-items: center; min-height: 44px; margin-top: 8px; }
+  .sn { font-size: 12px; }
+}
+/* 태블릿 세로·가로로 눕힌 폰(600px 이상) — 머리는 글과 사진을 나란히, 본문 카드는 2~3칸 */
+@media (min-width: 600px) and (max-width: 900px) {
+  .ph-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 28px; }
+  .steps, .pn-in { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pn a + a { text-align: right; }
+  .risk li { grid-template-columns: 150px minmax(0, 1fr); gap: 6px 20px; }
+}
+@media (min-width: 720px) and (max-width: 900px) {
+  .kpi { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+  .kpi > div { padding: 18px 18px; }
+  .kpi .v { font-size: 26px; }
+  .kpi-firm .v { font-size: 18px; }
+  .feat { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .firm-cols { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* 가로로 눕힌 폰 — 머리 사진이 화면 높이를 넘지 않게 */
+@media (orientation: landscape) and (max-height: 500px) {
+  .ph-photo { max-height: calc(100vh - 96px); max-height: calc(100svh - 96px); }
+}
+
+/* 마우스를 올릴 수 있는 기기에서만 — 손가락 터치에서는 누른 뒤 효과(들썩임·색 반전)가 남지 않게 (PROCEDURE 3-7) */
+@media (hover: hover) {
+  .step:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); background: #fff; }
+  .ft:hover { border-color: var(--ink); transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .side-link:hover .arr { transform: translateX(5px); }
+  .pn a:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); color: var(--ink); }
+  .firm:hover { box-shadow: var(--shadow-md); border-color: var(--line-strong); }
 }

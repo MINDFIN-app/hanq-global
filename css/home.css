@@ -37,10 +37,11 @@
 .car-pause[aria-pressed="true"] .ico-pause { width: 0; height: 0; border-style: solid; border-width: 6px 0 6px 10px; border-color: transparent transparent transparent currentColor; margin-left: 3px; }
 .car-nav { display: flex; align-items: center; gap: 2px; padding: 0 4px; height: 40px; }
 .car-prev, .car-next { width: 32px; height: 32px; border: 0; border-radius: 50%; background: none; color: #fff; font-size: 22px; line-height: 1; cursor: pointer; transition: background var(--t-fast); }
-.car-prev:hover, .car-next:hover { background: rgba(255, 255, 255, .16); }
-.car-dots { display: flex; gap: 6px; padding: 0 4px; }
-.car-dot { position: relative; width: 10px; height: 10px; padding: 0; border: 1.5px solid #fff; border-radius: var(--pill); background: none; cursor: pointer; overflow: hidden; transition: width var(--t-med) var(--ease-out); }
-.car-dot[aria-current="true"] { width: 30px; }
+.car-dots { display: flex; }
+/* 단추는 24px 이상(손가락 크기), 보이는 점은 안쪽 span — 점 사이 간격은 단추 여백이 만든다 */
+.car-dot { display: grid; place-items: center; min-width: 24px; height: 32px; padding: 0 7px; border: 0; background: none; cursor: pointer; }
+.car-dot span { position: relative; display: block; width: 10px; height: 10px; border: 1.5px solid #fff; border-radius: var(--pill); overflow: hidden; transition: width var(--t-med) var(--ease-out); }
+.car-dot[aria-current="true"] span { width: 30px; }
 .car-dot i { position: absolute; inset: 0; background: #fff; transform: scaleX(0); transform-origin: left; }
 .car-dot[aria-current="true"] i { transform: scaleX(1); }
 .car.is-playing .car-dot[aria-current="true"] i { animation: grow var(--car-ms, 7000ms) linear both; }
@@ -56,12 +57,10 @@ html:not(.js) .car-ctrl { display: none; }
 .band-act { display: flex; flex-wrap: wrap; gap: 12px 14px; align-items: center; }
 
 /* 나라 카드 — 사진 · 제목 · 1위 · 버튼 (모바일은 옆으로 넘기는 줄) */
-.ccards { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
+.ccards { list-style: none; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
 .ccard { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow-sm); transition: transform var(--t-med) var(--ease-out), box-shadow var(--t-med); }
-.ccard:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
 .ccard-img { display: block; aspect-ratio: 3 / 2; overflow: hidden; background: var(--paper); }
 .ccard-img img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease-out); }
-.ccard:hover .ccard-img img { transform: scale(1.06); }
 .ccard-body { display: flex; flex-direction: column; flex: 1; padding: 18px 18px 20px; }
 .ccard h3 { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -.02em; }
 .ccard h3 img { width: 24px; height: 18px; object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px var(--line); }
@@ -78,7 +77,6 @@ html:not(.js) .car-ctrl { display: none; }
 .tabs { display: inline-flex; flex-wrap: wrap; gap: 4px; margin-top: 36px; padding: 5px; background: #fff; border-radius: var(--pill); box-shadow: var(--shadow-sm); }
 .tab { display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 18px; background: none; border: 0; border-radius: var(--pill); font: inherit; font-size: 15px; font-weight: 700; color: var(--muted); cursor: pointer; transition: color var(--t-fast), background var(--t-fast); }
 .tab img { width: 24px; height: 18px; object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px var(--line); }
-.tab:hover { color: var(--ink); background: var(--paper); }
 .tab:focus-visible { outline: 2px solid var(--link); outline-offset: 1px; }
 .tab[aria-selected="true"] { color: #fff; background: var(--ink); }
 html:not(.js) .tabs { display: none; }
@@ -95,7 +93,6 @@ html:not(.js) .cols { margin-top: 20px; }
 .col-h p { margin: 6px 0 0; font-size: 13px; line-height: 1.6; color: var(--muted); }
 .card { display: grid; grid-template-columns: 64px minmax(0, 1fr) 28px; gap: 14px; align-items: center; margin: 0 -12px; padding: 20px 12px; border-bottom: 1px solid var(--line); border-radius: var(--radius-sm); text-decoration: none; color: var(--ink); animation: fadeUp .6s var(--ease-out) both; transition: background var(--t-fast); }
 .card:last-child { border-bottom: 0; }
-.card:hover { color: var(--ink); background: var(--paper); }
 .card:nth-of-type(2) { animation-delay: .06s; }
 .card:nth-of-type(3) { animation-delay: .12s; }
 .rk { font-family: var(--font-num); font-weight: 700; font-size: 40px; line-height: 1; color: var(--wine); letter-spacing: -.05em; }
@@ -105,8 +102,24 @@ html:not(.js) .cols { margin-top: 20px; }
 .criteria { display: block; margin-top: 8px; padding-left: 9px; border-left: 2px solid var(--wine); color: var(--muted); font-size: 12px; line-height: 1.55; }
 .criteria b { color: var(--body); }
 .go { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--ink); font-size: 14px; transition: background var(--t-fast), color var(--t-fast), transform var(--t-med) var(--ease-out); }
-.card:hover .go { background: var(--ink); color: #fff; transform: translateX(4px); }
 .pane-more { margin-top: 24px; }
+/* Top 3 카드 속 대표 상품 줄 — 회사 로고 + 상품 이름 */
+.pk { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin-top: 10px; font-size: 13px; font-weight: 700; line-height: 1.45; color: var(--ink); }
+.pk-logo { width: 58px; height: 26px; padding: 3px 6px; }
+/* 회사별 대표 상품 줄 (홍콩 보험 5개사) — 판매 순위 위에 */
+.feat-row { margin-top: 28px; padding: 22px 24px 24px; background: #fff; border-radius: var(--radius); box-shadow: var(--shadow-sm); }
+.fcards { list-style: none; margin: 18px 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+.fcard { position: relative; display: flex; flex-direction: column; gap: 6px; height: 100%; padding: 14px 14px 50px; border: 1px solid var(--line); border-radius: var(--radius-sm); text-decoration: none; color: var(--ink); transition: border-color var(--t-fast), box-shadow var(--t-med), transform var(--t-med) var(--ease-out); }
+.fc-logo { width: 100%; height: 56px; padding: 8px 12px; margin-bottom: 6px; }
+.fc-co { font-size: 12px; font-weight: 700; color: var(--wine); }
+.fc-nm { font-size: 15px; font-weight: 700; line-height: 1.4; letter-spacing: -.01em; }
+.fc-mt { font-size: 13px; line-height: 1.5; color: var(--muted); }
+.fcard .go { position: absolute; left: 14px; bottom: 12px; }
+/* 추가 소개 카드 (영국 투자 Dominion) — 순위 카드 아래, 순위 번호 대신 로고 */
+.feat-h { display: flex; flex-direction: column; gap: 4px; margin-top: 18px; padding-top: 16px; border-top: 2px solid var(--ink); }
+.feat-h b { font-size: 16px; font-weight: 800; }
+.feat-h span { font-size: 13px; color: var(--muted); }
+.rk-logo { width: 64px; height: 40px; padding: 6px; }
 
 /* 숫자 띠 (짙은 와인) */
 .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; margin-top: 56px; }
@@ -133,6 +146,7 @@ html:not(.js) .cols { margin-top: 20px; }
 
 @media (max-width: 1200px) {
   .ccards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .fcards { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 @media (max-width: 900px) {
@@ -152,8 +166,57 @@ html:not(.js) .cols { margin-top: 20px; }
   .col { padding: 20px 18px 4px; }
   .card { grid-template-columns: 48px minmax(0, 1fr) 28px; }
   .rk { font-size: 32px; }
+  .rk-logo { width: 48px; height: 32px; padding: 4px; }
+  .feat-row { padding: 20px 18px; }
+  .fcards { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  .fcard { display: grid; grid-template-columns: 96px minmax(0, 1fr) 28px; grid-template-rows: auto auto auto; gap: 2px 14px; align-items: center; padding: 12px; }
+  .fc-logo { grid-row: 1 / span 3; height: 48px; padding: 6px 8px; margin: 0; }
+  .fcard .go { position: static; grid-column: 3; grid-row: 1 / span 3; }
   .stats { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .stat { padding: 18px 0; }
   .stat .n { font-size: 56px; }
   .method-grid { gap: 28px; }
+  .car-ctrl { gap: 6px; }
+  .car-prev, .car-next { width: 36px; height: 36px; }
+}
+/* 손가락으로 누르는 기기·작은 화면 — 11px 영문 라벨을 12px로 (가로로 놓은 태블릿 포함) */
+@media (pointer: coarse), (max-width: 900px) {
+  .en, .cap-k span { font-size: 12px; }
+}
+@media (max-width: 360px) {
+  .car-prev, .car-next { width: 32px; }
+}
+/* 태블릿 세로(600~900px) — 휴대폰 한 줄 배치를 그대로 늘리지 않고 칸을 나눈다 */
+@media (min-width: 600px) and (max-width: 900px) {
+  .car-view { aspect-ratio: 4 / 3; }
+  .slide-cap { right: auto; width: min(400px, calc(100% - 24px)); }
+  .ccard { flex-basis: 42%; }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 24px; }
+  .chk-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 720px) and (max-width: 900px) {
+  .cols { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+  .fcards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* 가로로 눕힌 폰(높이 500px 이하) — 글과 사진 슬라이드를 나란히, 사진은 화면 높이 안에 */
+@media (orientation: landscape) and (max-height: 500px) and (min-width: 600px) {
+  .hero { padding: 20px 0 32px; }
+  .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 28px; }
+  .h1 { font-size: clamp(30px, 4.4vw, 44px); }
+  .lede { font-size: 16px; }
+  .car-view { aspect-ratio: 4 / 3; max-height: calc(100vh - 96px); max-height: calc(100svh - 96px); }
+  .slide-cap { bottom: 56px; padding: 12px 14px; }
+  .cap-rows { margin-top: 8px; }
+}
+
+/* 마우스를 올릴 수 있는 기기에서만 — 손가락 터치에서는 누른 뒤 효과(들썩임·색 반전)가 남지 않게 (PROCEDURE 3-7) */
+@media (hover: hover) {
+  .car-prev:hover, .car-next:hover { background: rgba(255, 255, 255, .16); }
+  .ccard:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+  .ccard:hover .ccard-img img { transform: scale(1.06); }
+  .tab:hover { color: var(--ink); background: var(--paper); }
+  .card:hover { color: var(--ink); background: var(--paper); }
+  .card:hover .go { background: var(--ink); color: #fff; transform: translateX(4px); }
+  .fcard:hover { border-color: var(--ink); box-shadow: var(--shadow-md); transform: translateY(-3px); }
+  .fcard:hover .go { background: var(--ink); color: #fff; }
 }

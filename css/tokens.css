@@ -17,6 +17,7 @@
   --on-dark-muted: #d4c3c8;
   --error: #b3261e;
   --scrim: rgba(22, 22, 22, .38);
+  --tap: rgba(140, 27, 51, .12);   /* 손가락으로 누를 때 잠깐 비치는 색 */
   --shadow-sm: 0 1px 2px rgba(22, 22, 22, .06), 0 1px 3px rgba(22, 22, 22, .08);
   --shadow-md: 0 6px 18px rgba(22, 22, 22, .10), 0 2px 6px rgba(22, 22, 22, .06);
   --shadow-lg: 0 18px 48px rgba(22, 22, 22, .16);
@@ -39,6 +40,10 @@
   --gutter: 40px;
   --hdr-h: 118px;
 }
-@media (max-width: 900px) {
+/* 휴대폰 머리글 기준 — 폭 900px 이하이거나, 폭이 넓어도 가로로 눕힌 폰(높이 500px 이하). nav.js 의 MOBILE 과 같은 조건 */
+@media (max-width: 900px), (orientation: landscape) and (max-height: 500px) {
   :root { --gutter: 20px; --hdr-h: 64px; }
+}
+@media (max-width: 360px) {
+  :root { --gutter: 16px; }
 }
