@@ -21,7 +21,7 @@
 .ph-row { display: flex; gap: 20px; align-items: flex-end; margin-top: 22px; }
 .ph-rank { font-family: var(--font-num); font-weight: 700; font-size: 104px; line-height: .8; letter-spacing: -.06em; color: var(--wine); flex: none; }
 .ph-code { letter-spacing: -.03em; }
-.ph-title { margin: 0; font-weight: 800; font-size: clamp(30px, 3.6vw, 52px); line-height: 1.15; letter-spacing: -.035em; }
+.ph-title { margin: 0; font-weight: var(--w-head); font-size: clamp(30px, 3.6vw, 52px); line-height: 1.15; letter-spacing: var(--ls-display); }
 .ph-en { font-family: var(--font-num); font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-top: 14px; }
 .ph-sum { font-size: 17px; line-height: 1.8; color: var(--body); max-width: 620px; margin: 20px 0 0; }
 .ph-photo { margin: 0; border-radius: var(--radius); overflow: hidden; aspect-ratio: 3 / 2; background: var(--paper); box-shadow: var(--shadow-md); }
@@ -35,14 +35,14 @@
 .kpi .k { font-size: 13px; font-weight: 700; color: var(--muted); }
 .kpi .v { font-family: var(--font-num); font-weight: 700; font-size: 32px; letter-spacing: -.03em; margin-top: 8px; color: var(--ink); }
 .kpi .s { font-size: 13px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
-.kpi-firm .v { font-family: var(--font-ko); font-size: 22px; font-weight: 800; letter-spacing: -.02em; }
+.kpi-firm .v { font-family: var(--font-head); font-size: 22px; font-weight: var(--w-head); letter-spacing: -.02em; }
 
 /* 본문 + 오른쪽 한눈에 보기 */
 .pb { display: flex; flex-wrap: wrap; gap: 56px; padding-top: 72px; padding-bottom: 40px; border-top: 1px solid var(--line); }
 .pm { flex: 999 1 560px; min-width: 0; }
 .ps { flex: 1 1 300px; min-width: 0; }
 .blk { padding-bottom: 52px; margin-bottom: 52px; border-bottom: 1px solid var(--line); }
-.blk h2 { display: flex; gap: 14px; align-items: baseline; margin: 0 0 24px; font-size: 28px; font-weight: 800; letter-spacing: -.03em; }
+.blk h2 { display: flex; gap: 14px; align-items: baseline; margin: 0 0 24px; font-size: 28px; font-weight: var(--w-head); letter-spacing: var(--ls-title); }
 .no { font-family: var(--font-num); font-size: 13px; font-weight: 700; color: var(--wine); letter-spacing: .08em; }
 .blk p { font-size: 17px; line-height: 1.9; color: var(--body); margin: 0 0 18px; }
 .blk p b { color: var(--ink); font-weight: 700; }
@@ -83,7 +83,7 @@
 .pick { display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 20px; align-items: start; border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; }
 .pick-logo { width: 132px; height: 64px; padding: 10px 12px; }
 .pick-co { font-size: 12px; font-weight: 700; color: var(--wine); }
-.pick h3 { margin: 4px 0 0; font-size: 19px; font-weight: 800; line-height: 1.4; letter-spacing: -.02em; }
+.pick h3 { margin: 4px 0 0; font-size: 19px; font-weight: var(--w-head); line-height: 1.4; letter-spacing: -.02em; }
 .pick-type { font-size: 13px; color: var(--muted); margin-top: 4px; }
 .pick ul { list-style: none; margin: 12px 0 0; padding: 0; }
 .pick li { position: relative; padding-left: 14px; font-size: 15px; line-height: 1.7; color: var(--body); }
@@ -102,7 +102,7 @@
 .pn a { display: block; padding: 26px 28px; background: #fff; border-radius: var(--radius); text-decoration: none; color: var(--ink); box-shadow: var(--shadow-sm); transition: transform var(--t-med) var(--ease-out), box-shadow var(--t-med); }
 .pn a + a { text-align: right; }
 .pn small { display: block; font-size: 13px; font-weight: 700; color: var(--wine); }
-.pn strong { display: block; font-size: 20px; font-weight: 800; margin-top: 8px; letter-spacing: -.02em; }
+.pn strong { display: block; font-size: 20px; font-weight: var(--w-head); margin-top: 8px; letter-spacing: -.02em; }
 
 /* 은행·증권사 회사 카드 */
 .firm { border: 1px solid var(--line); border-radius: var(--radius); padding: 28px; box-shadow: var(--shadow-sm); transition: box-shadow var(--t-med), border-color var(--t-fast); }
@@ -110,7 +110,7 @@
 .firm-top { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 8px 22px; align-items: center; }
 .firm-rk { font-family: var(--font-num); font-weight: 700; font-size: 64px; line-height: .8; letter-spacing: -.06em; color: var(--wine); }
 .firm-k { font-size: 12px; font-weight: 700; color: var(--wine); }
-.firm-id h3 { margin: 4px 0 0; font-size: 24px; font-weight: 800; letter-spacing: -.025em; }
+.firm-id h3 { margin: 4px 0 0; font-size: 24px; font-weight: var(--w-head); letter-spacing: -.025em; }
 .firm-en { font-family: var(--font-num); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-top: 6px; }
 .firm-cap { text-align: right; background: var(--paper); border-radius: var(--radius-sm); padding: 12px 16px; }
 .firm-cap .v { font-family: var(--font-num); font-weight: 700; font-size: 22px; letter-spacing: -.02em; white-space: nowrap; }

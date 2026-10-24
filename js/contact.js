@@ -10,6 +10,8 @@
   var openedAt = Date.now();
   var status = document.getElementById('form-status');
   var submit = form.querySelector('button[type="submit"]');
+  /* 안내·오류 문구는 그 페이지 언어로 (build.py 가 넣는 #hq-i18n, content/i18n/ui.json 의 js.*) */
+  var T = JSON.parse(document.getElementById('hq-i18n').textContent);
 
   /* 상품 페이지에서 온 경우 미리 선택: contact.html?product=hk-ins-1 또는 ?country=hk */
   var params = new URLSearchParams(window.location.search);
@@ -43,11 +45,11 @@
     var errors = [];
     var name = val('name'), phone = val('phone'), email = val('email'), message = val('message');
     var checks = [
-      ['name', !name ? '이름을 적어 주세요.' : name.length > 30 ? '이름은 30자 이내로 적어 주세요.' : ''],
-      ['phone', !phone ? '휴대폰 번호를 적어 주세요.' : !/^[0-9-]{10,13}$/.test(phone) ? '숫자와 하이픈만, 10~13자로 적어 주세요.' : ''],
-      ['email', email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? '이메일 형식을 확인해 주세요.' : ''],
-      ['message', message.length < 10 ? '문의 내용을 10자 이상 적어 주세요.' : message.length > 2000 ? '문의 내용은 2,000자 이내로 줄여 주세요.' : ''],
-      ['consent', !form.elements.consent.checked ? '개인정보 수집·이용에 동의해야 문의를 보낼 수 있습니다.' : '']
+      ['name', !name ? T.err_name : name.length > 30 ? T.err_name_long : ''],
+      ['phone', !phone ? T.err_phone : !/^[0-9-]{10,13}$/.test(phone) ? T.err_phone_fmt : ''],
+      ['email', email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ? T.err_email : ''],
+      ['message', message.length < 10 ? T.err_msg_short : message.length > 2000 ? T.err_msg_long : ''],
+      ['consent', !form.elements.consent.checked ? T.err_consent : '']
     ];
     checks.forEach(function (c) {
       setError(c[0], c[1]);
@@ -77,7 +79,7 @@
       return;
     }
     if (!endpoint) {
-      show('info', '시안 화면이라 아직 문의가 전송되지 않습니다. 문의 메일 연결(Apps Script) 설정이 끝나면 이 양식으로 바로 접수됩니다.');
+      show('info', T.no_endpoint);
       return;
     }
     var payload = {
@@ -95,12 +97,12 @@
       from: product
     };
     submit.disabled = true;
-    submit.firstChild.textContent = '보내는 중… ';
+    submit.firstChild.textContent = T.sending;
     fetch(endpoint, { method: 'POST', body: JSON.stringify(payload) })
       .then(function (r) { return r.json(); })
       .then(function (res) {
         if (!res || !res.ok) throw new Error((res && res.error) || 'fail');
-        var at = new Date().toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' });
+        var at = new Date().toLocaleString(T.locale || 'ko-KR', { timeZone: 'Asia/Seoul' }) + ' KST';
         form.hidden = true;
         var done = document.getElementById('form-done');
         done.querySelector('[data-received]').textContent = at;
@@ -109,8 +111,8 @@
       })
       .catch(function () {
         submit.disabled = false;
-        submit.firstChild.textContent = '다시 보내기 ';
-        show('fail', '문의를 보내지 못했습니다. 입력하신 내용은 그대로 있으니 잠시 뒤 다시 보내 주세요. 계속 안 되면 ' + fallbackMail() + ' 로 메일을 보내 주세요.');
+        submit.firstChild.textContent = T.resend;
+        show('fail', T.fail.replace('{mail}', fallbackMail()));
       });
   });
 })();

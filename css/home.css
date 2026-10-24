@@ -7,8 +7,14 @@
 .hero-txt > *:nth-child(2) { animation-delay: .06s; }
 .hero-txt > *:nth-child(3) { animation-delay: .14s; }
 .hero-txt > *:nth-child(4) { animation-delay: .22s; }
-.h1 { font-weight: 800; font-size: clamp(38px, 4.6vw, 66px); line-height: 1.14; letter-spacing: -.04em; margin: 18px 0 0; }
+.h1 { font-weight: var(--w-head); font-size: clamp(38px, 4.6vw, 66px); line-height: 1.14; letter-spacing: var(--ls-display); margin: 18px 0 0; }
 .h1 .ln { display: block; }
+/* 슬로건은 언어마다 두 줄로 떨어지게 크기를 맞춘다 — 한국어 '흐름이 먼저 보입니다'가 한 줄에 들어가도록(2026-10-23) */
+/* 언어별 슬로건 크기 — 명조는 고딕보다 글자 폭이 넓어 한 단계 작게(두 줄 유지) */
+:where(:lang(ko)) .h1 { font-size: clamp(32px, 3.6vw, 52px); }
+:where(:lang(en)) .h1 { font-size: clamp(32px, 3.5vw, 52px); line-height: 1.12; }
+:where(:lang(ja)) .h1 { font-size: clamp(30px, 3.6vw, 50px); }
+:where(:lang(zh)) .h1 { font-size: clamp(32px, 3.8vw, 54px); }
 .h1 em { font-style: normal; color: var(--wine); }
 .lede { max-width: 540px; font-size: 18px; line-height: 1.8; color: var(--body); margin: 24px 0 0; }
 .cta { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
@@ -21,7 +27,7 @@
 .slide.is-active .slide-img { transform: scale(1); }
 .slide-cap { position: absolute; left: 20px; bottom: 20px; width: min(380px, calc(100% - 40px)); background: rgba(255, 255, 255, .96); border-radius: var(--radius); padding: 18px 20px; box-shadow: var(--shadow-md); }
 .slide.is-active .slide-cap { animation: fadeUp .7s .25s var(--ease-out) both; }
-.cap-k { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: 800; }
+.cap-k { display: flex; align-items: center; gap: 10px; font-size: 18px; font-weight: var(--w-head); }
 .cap-k img { width: 26px; height: 19px; object-fit: cover; border-radius: 3px; box-shadow: 0 0 0 1px var(--line); }
 .cap-k span { font-family: var(--font-num); font-size: 11px; font-weight: 600; letter-spacing: .14em; color: var(--muted); }
 .cap-rows { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 12px; }
@@ -52,7 +58,7 @@ html:not(.js) .car-ctrl { display: none; }
 /* 안내 띠 (회색) */
 .band { background: var(--paper); padding: 44px 0; }
 .band-in { display: flex; flex-wrap: wrap; gap: 24px 48px; align-items: center; justify-content: space-between; }
-.band h2 { margin: 0; font-size: 24px; font-weight: 800; letter-spacing: -.025em; }
+.band h2 { margin: 0; font-size: 24px; font-weight: var(--w-head); letter-spacing: -.025em; }
 .band p { margin: 8px 0 0; font-size: 15px; line-height: 1.7; color: var(--muted); max-width: 520px; }
 .band-act { display: flex; flex-wrap: wrap; gap: 12px 14px; align-items: center; }
 
@@ -62,7 +68,7 @@ html:not(.js) .car-ctrl { display: none; }
 .ccard-img { display: block; aspect-ratio: 3 / 2; overflow: hidden; background: var(--paper); }
 .ccard-img img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease-out); }
 .ccard-body { display: flex; flex-direction: column; flex: 1; padding: 18px 18px 20px; }
-.ccard h3 { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -.02em; }
+.ccard h3 { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 20px; font-weight: var(--w-head); letter-spacing: -.02em; }
 .ccard h3 img { width: 24px; height: 18px; object-fit: cover; border-radius: 2px; box-shadow: 0 0 0 1px var(--line); }
 .ccard p { margin: 10px 0 0; font-size: 14px; line-height: 1.65; color: var(--muted); }
 .ccard dl { margin: 14px 0 0; display: grid; gap: 8px; }
@@ -82,14 +88,14 @@ html:not(.js) .car-ctrl { display: none; }
 html:not(.js) .tabs { display: none; }
 html:not(.js) .pane[hidden] { display: block; }
 .pane { animation: fadeIn .5s both; }
-.pane-title { display: none; margin: 48px 0 0; font-size: 24px; font-weight: 800; }
+.pane-title { display: none; margin: 48px 0 0; font-size: 24px; font-weight: var(--w-head); }
 html:not(.js) .pane-title { display: flex; align-items: center; gap: 12px; }
 .pane-title img { width: 32px; height: 24px; object-fit: cover; }
 .cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 28px; }
 html:not(.js) .cols { margin-top: 20px; }
 .col { background: #fff; border-radius: var(--radius); padding: 24px 24px 8px; box-shadow: var(--shadow-sm); }
 .col-h { padding-bottom: 14px; border-bottom: 2px solid var(--ink); }
-.col-h h3 { margin: 0; font-size: 20px; font-weight: 800; letter-spacing: -.02em; }
+.col-h h3 { margin: 0; font-size: 20px; font-weight: var(--w-head); letter-spacing: -.02em; }
 .col-h p { margin: 6px 0 0; font-size: 13px; line-height: 1.6; color: var(--muted); }
 .card { display: grid; grid-template-columns: 64px minmax(0, 1fr) 28px; gap: 14px; align-items: center; margin: 0 -12px; padding: 20px 12px; border-bottom: 1px solid var(--line); border-radius: var(--radius-sm); text-decoration: none; color: var(--ink); animation: fadeUp .6s var(--ease-out) both; transition: background var(--t-fast); }
 .card:last-child { border-bottom: 0; }
@@ -117,7 +123,7 @@ html:not(.js) .cols { margin-top: 20px; }
 .fcard .go { position: absolute; left: 14px; bottom: 12px; }
 /* 추가 소개 카드 (영국 투자 Dominion) — 순위 카드 아래, 순위 번호 대신 로고 */
 .feat-h { display: flex; flex-direction: column; gap: 4px; margin-top: 18px; padding-top: 16px; border-top: 2px solid var(--ink); }
-.feat-h b { font-size: 16px; font-weight: 800; }
+.feat-h b { font-size: 16px; font-weight: var(--w-head); }
 .feat-h span { font-size: 13px; color: var(--muted); }
 .rk-logo { width: 64px; height: 40px; padding: 6px; }
 
@@ -133,14 +139,14 @@ html:not(.js) .cols { margin-top: 20px; }
 .steps-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
 .steps-list li { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 18px; padding: 26px 0; border-bottom: 1px solid var(--line); }
 .steps-list .sn { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--wine); color: #fff; font-family: var(--font-num); font-size: 14px; font-weight: 700; }
-.steps-list h3 { margin: 8px 0 0; font-size: 20px; font-weight: 800; letter-spacing: -.02em; }
+.steps-list h3 { margin: 8px 0 0; font-size: 20px; font-weight: var(--w-head); letter-spacing: -.02em; }
 .steps-list p { margin: 10px 0 0; font-size: 15px; line-height: 1.8; color: var(--muted); }
 
 /* 먼저 확인할 세 가지 */
 .chk-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 40px; }
 .chk-row { background: #fff; border-radius: var(--radius); padding: 28px 26px; box-shadow: var(--shadow-sm); }
 .chk-n { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--wine); color: var(--wine); font-family: var(--font-num); font-weight: 700; font-size: 16px; }
-.chk-row h3 { margin: 18px 0 0; font-size: 19px; font-weight: 800; line-height: 1.45; letter-spacing: -.02em; }
+.chk-row h3 { margin: 18px 0 0; font-size: 19px; font-weight: var(--w-head); line-height: 1.45; letter-spacing: -.02em; }
 .chk-row p { margin: 12px 0 0; font-size: 15px; line-height: 1.8; color: var(--body); }
 .chk-row small { display: block; margin-top: 10px; font-size: 13px; font-weight: 700; color: var(--wine); }
 

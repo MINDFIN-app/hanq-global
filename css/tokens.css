@@ -22,8 +22,13 @@
   --shadow-md: 0 6px 18px rgba(22, 22, 22, .10), 0 2px 6px rgba(22, 22, 22, .06);
   --shadow-lg: 0 18px 48px rgba(22, 22, 22, .16);
 
-  --font-ko: 'Noto Sans KR', system-ui, -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
-  --font-num: 'Inter Tight', 'Noto Sans KR', system-ui, sans-serif;
+  /* 글꼴 (2026-10-24 'A 명조 제목 + 고딕 본문') — 제목은 명조, 본문은 고딕, 숫자·영문 라벨은 IBM Plex Sans. 언어별은 아래 */
+  --font-head: 'Noto Serif KR', 'AppleMyungjo', 'Batang', serif;
+  --font-text: 'IBM Plex Sans KR', system-ui, -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  --font-num: 'IBM Plex Sans', 'IBM Plex Sans KR', system-ui, sans-serif;
+  --w-head: 700;            /* 제목 굵기 */
+  --ls-display: -.03em;     /* 큰 제목 자간 (명조라 고딕보다 덜 좁힌다) */
+  --ls-title: -.02em;
 
   --radius: 12px;
   --radius-sm: 8px;
@@ -40,6 +45,13 @@
   --gutter: 40px;
   --hdr-h: 118px;
 }
+/* 언어별 글꼴 (PROCEDURE 3-8) — 페이지마다 그 언어 글꼴만 받는다(build.py FONT). 영어는 영국식, 중국어는 간체 */
+:root:lang(en) { --font-head: 'Source Serif 4', Georgia, 'Times New Roman', serif; --font-text: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-num: 'IBM Plex Sans', system-ui, sans-serif; --w-head: 600; --ls-display: -.015em; --ls-title: -.01em; }
+:root:lang(ja) { --font-head: 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif; --font-text: 'IBM Plex Sans JP', system-ui, 'Hiragino Sans', 'Yu Gothic UI', Meiryo, sans-serif;
+  --font-num: 'IBM Plex Sans', 'IBM Plex Sans JP', system-ui, sans-serif; --ls-display: 0; --ls-title: 0; }
+:root:lang(zh) { --font-head: 'Noto Serif SC', 'Songti SC', 'SimSun', serif; --font-text: 'Noto Sans SC', system-ui, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-num: 'IBM Plex Sans', 'Noto Sans SC', system-ui, sans-serif; --ls-display: 0; --ls-title: 0; }
 /* 휴대폰 머리글 기준 — 폭 900px 이하이거나, 폭이 넓어도 가로로 눕힌 폰(높이 500px 이하). nav.js 의 MOBILE 과 같은 조건 */
 @media (max-width: 900px), (orientation: landscape) and (max-height: 500px) {
   :root { --gutter: 20px; --hdr-h: 64px; }

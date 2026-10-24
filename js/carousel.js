@@ -11,6 +11,9 @@
   var dots = [].slice.call(car.querySelectorAll('.car-dot'));
   var pauseBtn = car.querySelector('.car-pause');
   var MS = 7000;
+  /* 멈춤 단추 이름은 그 페이지 언어로 (build.py 가 넣는 #hq-i18n) */
+  var T = {};
+  try { T = JSON.parse(document.getElementById('hq-i18n').textContent); } catch (e) { /* 문구가 없으면 처음 이름 유지 */ }
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var index = 0, timer = null, userPaused = reduce, hover = false, focusIn = false, inView = true;
   car.style.setProperty('--car-ms', MS + 'ms');
@@ -43,7 +46,7 @@
   function setPaused(on) {
     userPaused = on;
     pauseBtn.setAttribute('aria-pressed', on ? 'true' : 'false');
-    pauseBtn.setAttribute('aria-label', on ? '자동 넘김 다시 시작' : '자동 넘김 멈추기');
+    pauseBtn.setAttribute('aria-label', (on ? T.car_play : T.car_pause) || pauseBtn.getAttribute('aria-label'));
     schedule();
   }
 
