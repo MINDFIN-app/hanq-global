@@ -6,7 +6,7 @@
 <title>お問い合わせ | hanQ グローバル金融</title>
 <meta name="description" content="関心のある国と商品をお知らせいただければ、統計と原文の資料でご説明します。">
 <meta name="robots" content="noindex, nofollow">
-<meta name="hanq-build" content="20261024-105332">
+<meta name="hanq-build" content="20261024-112642">
 <meta name="theme-color" content="#ffffff">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="hanQ グローバル金融">
@@ -73,8 +73,35 @@
 </div>
 
 <div class="field" data-field="phone">
-<label for="f-phone"><hq-t><ruby>携帯電話<rt>けいたいでんわ</rt></ruby><ruby>番号<rt>ばんごう</rt></ruby><wbr>（<ruby>韓国<rt>かんこく</rt></ruby>）</hq-t><span class="req"><hq-t><ruby>必須<rt>ひっす</rt></ruby></hq-t></span></label>
-<input type="tel" id="f-phone" name="phone" maxlength="13" autocomplete="tel" inputmode="tel" placeholder="010-0000-0000" required aria-describedby="e-phone">
+<label for="f-phone"><hq-t><ruby>携帯電話<rt>けいたいでんわ</rt></ruby><ruby>番号<rt>ばんごう</rt></ruby></hq-t><span class="req"><hq-t><ruby>必須<rt>ひっす</rt></ruby></hq-t></span></label>
+<div class="tel-row">
+<select id="f-cc" name="cc" aria-label="国番号" aria-describedby="h-phone" autocomplete="tel-country-code">
+<option value="kr" data-dial="+82" data-ph="010-0000-0000">+82 韓国</option>
+<option value="hk" data-dial="+852" data-ph="0000 0000">+852 香港</option>
+<option value="sg" data-dial="+65" data-ph="0000 0000">+65 シンガポール</option>
+<option value="gb" data-dial="+44" data-ph="07700 000000">+44 英国</option>
+<option value="ca" data-dial="+1" data-ph="000 000 0000">+1 カナダ</option>
+<option value="jp" data-dial="+81" data-ph="090-0000-0000" selected>+81 日本</option>
+<option value="cn" data-dial="+86" data-ph="000 0000 0000">+86 中国</option>
+<option value="tw" data-dial="+886" data-ph="0900 000 000">+886 台湾</option>
+<option value="mo" data-dial="+853" data-ph="0000 0000">+853 マカオ</option>
+<option value="us" data-dial="+1" data-ph="000 000 0000">+1 米国</option>
+<option value="au" data-dial="+61" data-ph="0400 000 000">+61 オーストラリア</option>
+<option value="nz" data-dial="+64" data-ph="020 000 0000">+64 ニュージーランド</option>
+<option value="my" data-dial="+60" data-ph="010-000 0000">+60 マレーシア</option>
+<option value="th" data-dial="+66" data-ph="080 000 0000">+66 タイ</option>
+<option value="vn" data-dial="+84" data-ph="090 000 00 00">+84 ベトナム</option>
+<option value="id" data-dial="+62" data-ph="0800-0000-0000">+62 インドネシア</option>
+<option value="ph" data-dial="+63" data-ph="0900 000 0000">+63 フィリピン</option>
+<option value="in" data-dial="+91" data-ph="00000 00000">+91 インド</option>
+<option value="ae" data-dial="+971" data-ph="050 000 0000">+971 アラブ首長国連邦</option>
+<option value="de" data-dial="+49" data-ph="01500 000000">+49 ドイツ</option>
+<option value="fr" data-dial="+33" data-ph="06 00 00 00 00">+33 フランス</option>
+<option value="xx" data-dial="" data-ph="+00 000 0000">その他（番号欄に+と国番号から）</option>
+</select>
+<input type="tel" id="f-phone" name="phone" maxlength="20" autocomplete="tel-national" inputmode="tel" placeholder="090-0000-0000" required aria-describedby="h-phone e-phone">
+</div>
+<div class="hint" id="h-phone"><hq-t><ruby>国番号<rt>くにばんごう</rt></ruby>を<wbr><ruby>選<rt>えら</rt></ruby>んでから、<wbr><ruby>残<rt>のこ</rt></ruby>りの<wbr><ruby>番号<rt>ばんごう</rt></ruby>を<wbr><ruby>入力<rt>にゅうりょく</rt></ruby>してください。<wbr>+と<wbr><ruby>国番号<rt>くにばんごう</rt></ruby>から<wbr><ruby>入力<rt>にゅうりょく</rt></ruby>すると、<wbr><ruby>国番号<rt>くにばんごう</rt></ruby>が<wbr><ruby>自動<rt>じどう</rt></ruby>で<wbr><ruby>切<rt>き</rt></ruby>り<ruby>替<rt>か</rt></ruby>わります。</hq-t></div>
 <div class="err" id="e-phone" hidden></div>
 </div>
 
@@ -100,11 +127,11 @@
 <label for="f-product"><hq-t><ruby>関心<rt>かんしん</rt></ruby>の<wbr>ある<wbr><ruby>商品<rt>しょうひん</rt></ruby></hq-t></label>
 <select id="f-product" name="product">
 <option value="">選択しない</option>
-<optgroup label="香港"><option value="hk-ins-1">保険1位・有配当の貯蓄・終身保険</option><option value="hk-ins-2">保険2位・無配当の個人保険</option><option value="hk-ins-3">保険3位・投資連動型保険（ILAS）</option><option value="hk-par-axa">保険・アクサ・WealthAhead II – Supreme</option><option value="hk-par-sunlife">保険・サンライフ・Stellar Multi-Currency II</option><option value="hk-par-chubb">保険・チャブ・MyLegacy Multi-Currency</option><option value="hk-par-ctflife">保険・CTFライフ・Sky Leap 88</option><option value="hk-par-generali">保険・ジェネラリ・LionAchiever Elite</option><option value="hk-inv-1">投資1位・債券型ファンド</option><option value="hk-inv-2">投資2位・バランス型（混合資産）ファンド</option><option value="hk-inv-3">投資3位・株式型ファンド</option></optgroup>
-<optgroup label="シンガポール"><option value="sg-ins-1">保険1位・投資連動型保険（ILP）</option><option value="sg-ins-2">保険2位・無配当の保険</option><option value="sg-ins-3">保険3位・有配当の保険</option><option value="sg-inv-1">投資1位・債券型ファンド</option><option value="sg-inv-2">投資2位・マネー・マーケット・ファンド</option><option value="sg-inv-3">投資3位・株式型ファンド</option></optgroup>
-<optgroup label="英国"><option value="uk-ins-1">保険1位・定期保険</option><option value="uk-ins-2">保険2位・所得補償保険</option><option value="uk-ins-3">保険3位・保証型の終身保険</option><option value="uk-inv-1">投資1位・マネー・マーケット・ファンド</option><option value="uk-inv-2">投資2位・バランス型（混合資産）ファンド</option><option value="uk-inv-3">投資3位・債券型ファンド</option><option value="uk-dominion">投資・ドミニオンの投資プラットフォーム</option></optgroup>
-<optgroup label="カナダ"><option value="ca-ins-1">保険1位・終身保険</option><option value="ca-ins-2">保険2位・定期保険</option><option value="ca-ins-3">保険3位・ユニバーサル生命保険</option><option value="ca-inv-1">投資1位・株式型ETF</option><option value="ca-inv-2">投資2位・債券型ETF</option><option value="ca-inv-3">投資3位・債券型の投資信託（ミューチュアルファンド）</option></optgroup>
-<optgroup label="日本"><option value="jp-ins-1">保険1位・医療保険</option><option value="jp-ins-2">保険2位・終身保険</option><option value="jp-ins-3">保険3位・がん保険</option><option value="jp-inv-1">投資1位・海外株式型投資信託</option><option value="jp-inv-2">投資2位・内外株式型投資信託</option><option value="jp-inv-3">投資3位・内外資産複合型投資信託</option></optgroup>
+<optgroup label="香港"><option value="hk-ins-1" data-ko="보험 1위 · 유배당 저축·종신보험">保険1位・有配当の貯蓄・終身保険</option><option value="hk-ins-2" data-ko="보험 2위 · 무배당 개인보험">保険2位・無配当の個人保険</option><option value="hk-ins-3" data-ko="보험 3위 · 투자연계보험(ILAS)">保険3位・投資連動型保険（ILAS）</option><option value="hk-par-axa" data-ko="보험 · AXA · WealthAhead II – Supreme">保険・アクサ・WealthAhead II – Supreme</option><option value="hk-par-sunlife" data-ko="보험 · Sun Life · Stellar Multi-Currency II">保険・サンライフ・Stellar Multi-Currency II</option><option value="hk-par-chubb" data-ko="보험 · Chubb · MyLegacy Multi-Currency">保険・チャブ・MyLegacy Multi-Currency</option><option value="hk-par-ctflife" data-ko="보험 · CTF Life · Sky Leap 88">保険・CTFライフ・Sky Leap 88</option><option value="hk-par-generali" data-ko="보험 · Generali · LionAchiever Elite">保険・ジェネラリ・LionAchiever Elite</option><option value="hk-inv-1" data-ko="투자 1위 · 채권형 펀드">投資1位・債券型ファンド</option><option value="hk-inv-2" data-ko="투자 2위 · 혼합자산 펀드">投資2位・バランス型（混合資産）ファンド</option><option value="hk-inv-3" data-ko="투자 3위 · 주식형 펀드">投資3位・株式型ファンド</option></optgroup>
+<optgroup label="シンガポール"><option value="sg-ins-1" data-ko="보험 1위 · 투자연계보험(ILP)">保険1位・投資連動型保険（ILP）</option><option value="sg-ins-2" data-ko="보험 2위 · 무배당 보험">保険2位・無配当の保険</option><option value="sg-ins-3" data-ko="보험 3위 · 유배당 보험">保険3位・有配当の保険</option><option value="sg-inv-1" data-ko="투자 1위 · 채권형 펀드">投資1位・債券型ファンド</option><option value="sg-inv-2" data-ko="투자 2위 · 머니마켓 펀드">投資2位・マネー・マーケット・ファンド</option><option value="sg-inv-3" data-ko="투자 3위 · 주식형 펀드">投資3位・株式型ファンド</option></optgroup>
+<optgroup label="英国"><option value="uk-ins-1" data-ko="보험 1위 · 정기보험">保険1位・定期保険</option><option value="uk-ins-2" data-ko="보험 2위 · 소득보장보험">保険2位・所得補償保険</option><option value="uk-ins-3" data-ko="보험 3위 · 보증형 종신보험">保険3位・保証型の終身保険</option><option value="uk-inv-1" data-ko="투자 1위 · 머니마켓 펀드">投資1位・マネー・マーケット・ファンド</option><option value="uk-inv-2" data-ko="투자 2위 · 혼합자산 펀드">投資2位・バランス型（混合資産）ファンド</option><option value="uk-inv-3" data-ko="투자 3위 · 채권형 펀드">投資3位・債券型ファンド</option><option value="uk-dominion" data-ko="투자 · Dominion 투자 플랫폼">投資・ドミニオンの投資プラットフォーム</option></optgroup>
+<optgroup label="カナダ"><option value="ca-ins-1" data-ko="보험 1위 · 종신보험">保険1位・終身保険</option><option value="ca-ins-2" data-ko="보험 2위 · 정기보험">保険2位・定期保険</option><option value="ca-ins-3" data-ko="보험 3위 · 유니버설 생명보험">保険3位・ユニバーサル生命保険</option><option value="ca-inv-1" data-ko="투자 1위 · 주식형 ETF">投資1位・株式型ETF</option><option value="ca-inv-2" data-ko="투자 2위 · 채권형 ETF">投資2位・債券型ETF</option><option value="ca-inv-3" data-ko="투자 3위 · 채권형 뮤추얼펀드">投資3位・債券型の投資信託（ミューチュアルファンド）</option></optgroup>
+<optgroup label="日本"><option value="jp-ins-1" data-ko="보험 1위 · 의료보험">保険1位・医療保険</option><option value="jp-ins-2" data-ko="보험 2위 · 종신보험">保険2位・終身保険</option><option value="jp-ins-3" data-ko="보험 3위 · 암보험">保険3位・がん保険</option><option value="jp-inv-1" data-ko="투자 1위 · 해외주식형 투자신탁">投資1位・海外株式型投資信託</option><option value="jp-inv-2" data-ko="투자 2위 · 내외주식형 투자신탁">投資2位・内外株式型投資信託</option><option value="jp-inv-3" data-ko="투자 3위 · 내외자산복합형 투자신탁">投資3位・内外資産複合型投資信託</option></optgroup>
 </select>
 </div>
 
@@ -172,7 +199,7 @@
 <div class="meta"><span><hq-t><ruby>資料<rt>しりょう</rt></ruby>の<wbr><ruby>確認日<rt>かくにんにち</rt></ruby> 2026-10-21</hq-t></span><span><hq-t><ruby>試作版<rt>しさくばん</rt></ruby></hq-t></span><a href="about.html"><hq-t><ruby>会社案内<rt>かいしゃあんない</rt></ruby></hq-t></a><a href="contact.html"><hq-t>お<ruby>問<rt>と</rt></ruby>い<ruby>合<rt>あ</rt></ruby>わせ</hq-t></a><a href="privacy.html"><hq-t><ruby>個人情報<rt>こじんじょうほう</rt></ruby>の<wbr><ruby>取<rt>と</rt></ruby>り<ruby>扱<rt>あつか</rt></ruby>い</hq-t></a><a href="about.html#credits"><hq-t><ruby>写真<rt>しゃしん</rt></ruby>・ロゴの<wbr><ruby>出典<rt>しゅってん</rt></ruby></hq-t></a><span><hq-t>© 2026 hanQ グローバル<ruby>金融<rt>きんゆう</rt></ruby></hq-t></span></div>
 </div>
 </footer>
-<script type="application/json" id="hq-i18n">{"err_name": "お名前を入力してください。", "err_name_long": "お名前は30字以内で入力してください。", "err_phone": "携帯電話番号を入力してください。", "err_phone_fmt": "数字とハイフンだけで、10〜13字で入力してください。", "err_email": "メールアドレスの形式をご確認ください。", "err_msg_short": "お問い合わせの内容を10字以上入力してください。", "err_msg_long": "お問い合わせの内容は2,000字以内にしてください。", "err_consent": "個人情報の収集・利用に同意いただくと送信できます。", "no_endpoint": "試作版のため、まだお問い合わせは送信されません。メールの連携（Apps Script）の設定が終われば、このフォームからすぐに受け付けられます。", "sending": "送信中… ", "resend": "もう一度送信する ", "fail": "お問い合わせを送信できませんでした。入力した内容はそのまま残っていますので、少し時間をおいてもう一度お送りください。うまくいかない場合は {mail} までメールをお送りください。", "locale": "ja-JP"}</script>
+<script type="application/json" id="hq-i18n">{"err_name": "お名前を入力してください。", "err_name_long": "お名前は30字以内で入力してください。", "err_phone": "携帯電話番号を入力してください。", "err_phone_fmt": "国番号を除いた番号を、数字・ハイフン・スペースだけで入力してください。", "err_phone_len": "番号の桁数をご確認ください。", "err_phone_other": "「その他」の場合は、番号を+と国番号から入力してください。", "err_email": "メールアドレスの形式をご確認ください。", "err_msg_short": "お問い合わせの内容を10字以上入力してください。", "err_msg_long": "お問い合わせの内容は2,000字以内にしてください。", "err_consent": "個人情報の収集・利用に同意いただくと送信できます。", "no_endpoint": "試作版のため、まだお問い合わせは送信されません。メールの連携（Apps Script）の設定が終われば、このフォームからすぐに受け付けられます。", "sending": "送信中… ", "resend": "もう一度送信する ", "fail": "お問い合わせを送信できませんでした。入力した内容はそのまま残っていますので、少し時間をおいてもう一度お送りください。うまくいかない場合は {mail} までメールをお送りください。", "locale": "ja-JP"}</script>
 <script src="../js/contact.js"></script>
 </body>
 </html>

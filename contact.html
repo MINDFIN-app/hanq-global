@@ -6,7 +6,7 @@
 <title>Contact | hanQ Global Finance</title>
 <meta name="description" content="Tell us which countries and products interest you, and we will explain them using statistics and original sources.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="hanq-build" content="20261024-105332">
+<meta name="hanq-build" content="20261024-112642">
 <meta name="theme-color" content="#ffffff">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="hanQ Global Finance">
@@ -73,8 +73,35 @@
 </div>
 
 <div class="field" data-field="phone">
-<label for="f-phone">Mobile number (Korea)<span class="req">Required</span></label>
-<input type="tel" id="f-phone" name="phone" maxlength="13" autocomplete="tel" inputmode="tel" placeholder="010-0000-0000" required aria-describedby="e-phone">
+<label for="f-phone">Mobile number<span class="req">Required</span></label>
+<div class="tel-row">
+<select id="f-cc" name="cc" aria-label="Country code" aria-describedby="h-phone" autocomplete="tel-country-code">
+<option value="kr" data-dial="+82" data-ph="010-0000-0000">+82 South Korea</option>
+<option value="hk" data-dial="+852" data-ph="0000 0000">+852 Hong Kong</option>
+<option value="sg" data-dial="+65" data-ph="0000 0000">+65 Singapore</option>
+<option value="gb" data-dial="+44" data-ph="07700 000000" selected>+44 United Kingdom</option>
+<option value="ca" data-dial="+1" data-ph="000 000 0000">+1 Canada</option>
+<option value="jp" data-dial="+81" data-ph="090-0000-0000">+81 Japan</option>
+<option value="cn" data-dial="+86" data-ph="000 0000 0000">+86 China</option>
+<option value="tw" data-dial="+886" data-ph="0900 000 000">+886 Taiwan</option>
+<option value="mo" data-dial="+853" data-ph="0000 0000">+853 Macao</option>
+<option value="us" data-dial="+1" data-ph="000 000 0000">+1 United States</option>
+<option value="au" data-dial="+61" data-ph="0400 000 000">+61 Australia</option>
+<option value="nz" data-dial="+64" data-ph="020 000 0000">+64 New Zealand</option>
+<option value="my" data-dial="+60" data-ph="010-000 0000">+60 Malaysia</option>
+<option value="th" data-dial="+66" data-ph="080 000 0000">+66 Thailand</option>
+<option value="vn" data-dial="+84" data-ph="090 000 00 00">+84 Vietnam</option>
+<option value="id" data-dial="+62" data-ph="0800-0000-0000">+62 Indonesia</option>
+<option value="ph" data-dial="+63" data-ph="0900 000 0000">+63 Philippines</option>
+<option value="in" data-dial="+91" data-ph="00000 00000">+91 India</option>
+<option value="ae" data-dial="+971" data-ph="050 000 0000">+971 United Arab Emirates</option>
+<option value="de" data-dial="+49" data-ph="01500 000000">+49 Germany</option>
+<option value="fr" data-dial="+33" data-ph="06 00 00 00 00">+33 France</option>
+<option value="xx" data-dial="" data-ph="+00 000 0000">Other (type + and the country code in the number box)</option>
+</select>
+<input type="tel" id="f-phone" name="phone" maxlength="20" autocomplete="tel-national" inputmode="tel" placeholder="07700 000000" required aria-describedby="h-phone e-phone">
+</div>
+<div class="hint" id="h-phone">Choose your country code, then enter the rest of your number. If you type + and a country code, it is selected for you.</div>
 <div class="err" id="e-phone" hidden></div>
 </div>
 
@@ -100,11 +127,11 @@
 <label for="f-product">Product of interest</label>
 <select id="f-product" name="product">
 <option value="">No preference</option>
-<optgroup label="Hong Kong"><option value="hk-ins-1">Insurance No. 1 · Participating savings & whole life plans</option><option value="hk-ins-2">Insurance No. 2 · Non-participating individual policies</option><option value="hk-ins-3">Insurance No. 3 · Investment-linked assurance schemes (ILAS)</option><option value="hk-par-axa">Insurance · AXA · WealthAhead II – Supreme</option><option value="hk-par-sunlife">Insurance · Sun Life · Stellar Multi-Currency II</option><option value="hk-par-chubb">Insurance · Chubb · MyLegacy Multi-Currency</option><option value="hk-par-ctflife">Insurance · CTF Life · Sky Leap 88</option><option value="hk-par-generali">Insurance · Generali · LionAchiever Elite</option><option value="hk-inv-1">Investment No. 1 · Bond funds</option><option value="hk-inv-2">Investment No. 2 · Mixed-asset funds</option><option value="hk-inv-3">Investment No. 3 · Equity funds</option></optgroup>
-<optgroup label="Singapore"><option value="sg-ins-1">Insurance No. 1 · Investment-linked policies (ILPs)</option><option value="sg-ins-2">Insurance No. 2 · Non-participating policies</option><option value="sg-ins-3">Insurance No. 3 · Participating policies</option><option value="sg-inv-1">Investment No. 1 · Bond funds</option><option value="sg-inv-2">Investment No. 2 · Money market funds</option><option value="sg-inv-3">Investment No. 3 · Equity funds</option></optgroup>
-<optgroup label="UK"><option value="uk-ins-1">Insurance No. 1 · Term life insurance</option><option value="uk-ins-2">Insurance No. 2 · Income protection insurance</option><option value="uk-ins-3">Insurance No. 3 · Guaranteed whole of life insurance</option><option value="uk-inv-1">Investment No. 1 · Money market funds</option><option value="uk-inv-2">Investment No. 2 · Mixed-asset funds</option><option value="uk-inv-3">Investment No. 3 · Bond funds</option><option value="uk-dominion">Investment · Dominion investment platform</option></optgroup>
-<optgroup label="Canada"><option value="ca-ins-1">Insurance No. 1 · Whole life insurance</option><option value="ca-ins-2">Insurance No. 2 · Term life insurance</option><option value="ca-ins-3">Insurance No. 3 · Universal life insurance</option><option value="ca-inv-1">Investment No. 1 · Equity ETFs</option><option value="ca-inv-2">Investment No. 2 · Bond ETFs</option><option value="ca-inv-3">Investment No. 3 · Bond mutual funds</option></optgroup>
-<optgroup label="Japan"><option value="jp-ins-1">Insurance No. 1 · Medical insurance</option><option value="jp-ins-2">Insurance No. 2 · Whole life insurance</option><option value="jp-ins-3">Insurance No. 3 · Cancer insurance</option><option value="jp-inv-1">Investment No. 1 · Overseas equity investment trusts</option><option value="jp-inv-2">Investment No. 2 · Global equity investment trusts including Japan</option><option value="jp-inv-3">Investment No. 3 · Global multi-asset investment trusts</option></optgroup>
+<optgroup label="Hong Kong"><option value="hk-ins-1" data-ko="보험 1위 · 유배당 저축·종신보험">Insurance No. 1 · Participating savings & whole life plans</option><option value="hk-ins-2" data-ko="보험 2위 · 무배당 개인보험">Insurance No. 2 · Non-participating individual policies</option><option value="hk-ins-3" data-ko="보험 3위 · 투자연계보험(ILAS)">Insurance No. 3 · Investment-linked assurance schemes (ILAS)</option><option value="hk-par-axa" data-ko="보험 · AXA · WealthAhead II – Supreme">Insurance · AXA · WealthAhead II – Supreme</option><option value="hk-par-sunlife" data-ko="보험 · Sun Life · Stellar Multi-Currency II">Insurance · Sun Life · Stellar Multi-Currency II</option><option value="hk-par-chubb" data-ko="보험 · Chubb · MyLegacy Multi-Currency">Insurance · Chubb · MyLegacy Multi-Currency</option><option value="hk-par-ctflife" data-ko="보험 · CTF Life · Sky Leap 88">Insurance · CTF Life · Sky Leap 88</option><option value="hk-par-generali" data-ko="보험 · Generali · LionAchiever Elite">Insurance · Generali · LionAchiever Elite</option><option value="hk-inv-1" data-ko="투자 1위 · 채권형 펀드">Investment No. 1 · Bond funds</option><option value="hk-inv-2" data-ko="투자 2위 · 혼합자산 펀드">Investment No. 2 · Mixed-asset funds</option><option value="hk-inv-3" data-ko="투자 3위 · 주식형 펀드">Investment No. 3 · Equity funds</option></optgroup>
+<optgroup label="Singapore"><option value="sg-ins-1" data-ko="보험 1위 · 투자연계보험(ILP)">Insurance No. 1 · Investment-linked policies (ILPs)</option><option value="sg-ins-2" data-ko="보험 2위 · 무배당 보험">Insurance No. 2 · Non-participating policies</option><option value="sg-ins-3" data-ko="보험 3위 · 유배당 보험">Insurance No. 3 · Participating policies</option><option value="sg-inv-1" data-ko="투자 1위 · 채권형 펀드">Investment No. 1 · Bond funds</option><option value="sg-inv-2" data-ko="투자 2위 · 머니마켓 펀드">Investment No. 2 · Money market funds</option><option value="sg-inv-3" data-ko="투자 3위 · 주식형 펀드">Investment No. 3 · Equity funds</option></optgroup>
+<optgroup label="UK"><option value="uk-ins-1" data-ko="보험 1위 · 정기보험">Insurance No. 1 · Term life insurance</option><option value="uk-ins-2" data-ko="보험 2위 · 소득보장보험">Insurance No. 2 · Income protection insurance</option><option value="uk-ins-3" data-ko="보험 3위 · 보증형 종신보험">Insurance No. 3 · Guaranteed whole of life insurance</option><option value="uk-inv-1" data-ko="투자 1위 · 머니마켓 펀드">Investment No. 1 · Money market funds</option><option value="uk-inv-2" data-ko="투자 2위 · 혼합자산 펀드">Investment No. 2 · Mixed-asset funds</option><option value="uk-inv-3" data-ko="투자 3위 · 채권형 펀드">Investment No. 3 · Bond funds</option><option value="uk-dominion" data-ko="투자 · Dominion 투자 플랫폼">Investment · Dominion investment platform</option></optgroup>
+<optgroup label="Canada"><option value="ca-ins-1" data-ko="보험 1위 · 종신보험">Insurance No. 1 · Whole life insurance</option><option value="ca-ins-2" data-ko="보험 2위 · 정기보험">Insurance No. 2 · Term life insurance</option><option value="ca-ins-3" data-ko="보험 3위 · 유니버설 생명보험">Insurance No. 3 · Universal life insurance</option><option value="ca-inv-1" data-ko="투자 1위 · 주식형 ETF">Investment No. 1 · Equity ETFs</option><option value="ca-inv-2" data-ko="투자 2위 · 채권형 ETF">Investment No. 2 · Bond ETFs</option><option value="ca-inv-3" data-ko="투자 3위 · 채권형 뮤추얼펀드">Investment No. 3 · Bond mutual funds</option></optgroup>
+<optgroup label="Japan"><option value="jp-ins-1" data-ko="보험 1위 · 의료보험">Insurance No. 1 · Medical insurance</option><option value="jp-ins-2" data-ko="보험 2위 · 종신보험">Insurance No. 2 · Whole life insurance</option><option value="jp-ins-3" data-ko="보험 3위 · 암보험">Insurance No. 3 · Cancer insurance</option><option value="jp-inv-1" data-ko="투자 1위 · 해외주식형 투자신탁">Investment No. 1 · Overseas equity investment trusts</option><option value="jp-inv-2" data-ko="투자 2위 · 내외주식형 투자신탁">Investment No. 2 · Global equity investment trusts including Japan</option><option value="jp-inv-3" data-ko="투자 3위 · 내외자산복합형 투자신탁">Investment No. 3 · Global multi-asset investment trusts</option></optgroup>
 </select>
 </div>
 
@@ -172,7 +199,7 @@
 <div class="meta"><span>Data checked 2026-10-21</span><span>Draft</span><a href="about.html">About</a><a href="contact.html">Contact</a><a href="privacy.html">Privacy policy</a><a href="about.html#credits">Photo &amp; logo credits</a><span>© 2026 hanQ Global Finance</span></div>
 </div>
 </footer>
-<script type="application/json" id="hq-i18n">{"err_name": "Please enter your name.", "err_name_long": "Please keep your name to 30 characters or fewer.", "err_phone": "Please enter your mobile number.", "err_phone_fmt": "Use digits and hyphens only, 10 to 13 characters.", "err_email": "Please check the email address.", "err_msg_short": "Please write at least 10 characters.", "err_msg_long": "Please shorten your enquiry to 2,000 characters or fewer.", "err_consent": "You need to agree to the collection and use of your personal data to send an enquiry.", "no_endpoint": "This is a draft, so enquiries are not sent yet. Once the enquiry mail service (Apps Script) is set up, this form will submit directly.", "sending": "Sending… ", "resend": "Send again ", "fail": "We couldn't send your enquiry. What you entered is still here, so please try again shortly. If it keeps failing, please email {mail}.", "locale": "en-GB"}</script>
+<script type="application/json" id="hq-i18n">{"err_name": "Please enter your name.", "err_name_long": "Please keep your name to 30 characters or fewer.", "err_phone": "Please enter your mobile number.", "err_phone_fmt": "Please enter the number without the country code, using digits, spaces and hyphens only.", "err_phone_len": "Please check the number of digits.", "err_phone_other": "For ‘Other’, start the number with + and your country code.", "err_email": "Please check the email address.", "err_msg_short": "Please write at least 10 characters.", "err_msg_long": "Please shorten your enquiry to 2,000 characters or fewer.", "err_consent": "You need to agree to the collection and use of your personal data to send an enquiry.", "no_endpoint": "This is a draft, so enquiries are not sent yet. Once the enquiry mail service (Apps Script) is set up, this form will submit directly.", "sending": "Sending… ", "resend": "Send again ", "fail": "We couldn't send your enquiry. What you entered is still here, so please try again shortly. If it keeps failing, please email {mail}.", "locale": "en-GB"}</script>
 <script src="js/contact.js"></script>
 </body>
 </html>

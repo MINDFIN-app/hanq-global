@@ -40,6 +40,10 @@
   border: 1.5px solid var(--line-strong); border-radius: var(--radius-sm); padding: 14px 16px; transition: border-color var(--t-fast), box-shadow var(--t-fast);
 }
 .field textarea { min-height: 180px; resize: vertical; line-height: 1.7; }
+/* 휴대폰 = 국가번호 선택 + 번호 (2026-10-24). 국가번호 칸은 '+82 대한민국'이 다 보일 만큼, 좁은 화면에서는 40%까지 */
+.tel-row { display: flex; gap: 8px; }
+.field .tel-row select { flex: 0 1 auto; width: auto; max-width: 40%; padding-right: 10px; }
+.field .tel-row input { flex: 1 1 0; min-width: 0; }
 .field input:focus, .field select:focus, .field textarea:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 4px rgba(22, 22, 22, .08); }
 .field .hint { margin-top: 8px; font-size: 13px; color: var(--muted); }
 .field .err { margin-top: 8px; font-size: 14px; color: var(--error); font-weight: 500; }

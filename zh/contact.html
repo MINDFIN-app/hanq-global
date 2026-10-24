@@ -6,7 +6,7 @@
 <title>咨询 | hanQ 环球金融</title>
 <meta name="description" content="留下您关注的国家和产品，我们会依据统计和原文资料为您说明。">
 <meta name="robots" content="noindex, nofollow">
-<meta name="hanq-build" content="20261024-105332">
+<meta name="hanq-build" content="20261024-112642">
 <meta name="theme-color" content="#ffffff">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="hanQ 环球金融">
@@ -73,8 +73,35 @@
 </div>
 
 <div class="field" data-field="phone">
-<label for="f-phone"><hq-t>手机<wbr>号<wbr>码<wbr>（韩国）</hq-t><span class="req">必填</span></label>
-<input type="tel" id="f-phone" name="phone" maxlength="13" autocomplete="tel" inputmode="tel" placeholder="010-0000-0000" required aria-describedby="e-phone">
+<label for="f-phone"><hq-t>手机<wbr>号<wbr>码</hq-t><span class="req">必填</span></label>
+<div class="tel-row">
+<select id="f-cc" name="cc" aria-label="国家/地区代码" aria-describedby="h-phone" autocomplete="tel-country-code">
+<option value="kr" data-dial="+82" data-ph="010-0000-0000">+82 韩国</option>
+<option value="hk" data-dial="+852" data-ph="0000 0000">+852 香港</option>
+<option value="sg" data-dial="+65" data-ph="0000 0000">+65 新加坡</option>
+<option value="gb" data-dial="+44" data-ph="07700 000000">+44 英国</option>
+<option value="ca" data-dial="+1" data-ph="000 000 0000">+1 加拿大</option>
+<option value="jp" data-dial="+81" data-ph="090-0000-0000">+81 日本</option>
+<option value="cn" data-dial="+86" data-ph="000 0000 0000" selected>+86 中国</option>
+<option value="tw" data-dial="+886" data-ph="0900 000 000">+886 台湾</option>
+<option value="mo" data-dial="+853" data-ph="0000 0000">+853 澳门</option>
+<option value="us" data-dial="+1" data-ph="000 000 0000">+1 美国</option>
+<option value="au" data-dial="+61" data-ph="0400 000 000">+61 澳大利亚</option>
+<option value="nz" data-dial="+64" data-ph="020 000 0000">+64 新西兰</option>
+<option value="my" data-dial="+60" data-ph="010-000 0000">+60 马来西亚</option>
+<option value="th" data-dial="+66" data-ph="080 000 0000">+66 泰国</option>
+<option value="vn" data-dial="+84" data-ph="090 000 00 00">+84 越南</option>
+<option value="id" data-dial="+62" data-ph="0800-0000-0000">+62 印度尼西亚</option>
+<option value="ph" data-dial="+63" data-ph="0900 000 0000">+63 菲律宾</option>
+<option value="in" data-dial="+91" data-ph="00000 00000">+91 印度</option>
+<option value="ae" data-dial="+971" data-ph="050 000 0000">+971 阿联酋</option>
+<option value="de" data-dial="+49" data-ph="01500 000000">+49 德国</option>
+<option value="fr" data-dial="+33" data-ph="06 00 00 00 00">+33 法国</option>
+<option value="xx" data-dial="" data-ph="+00 000 0000">其他（在号码栏先填+和代码）</option>
+</select>
+<input type="tel" id="f-phone" name="phone" maxlength="20" autocomplete="tel-national" inputmode="tel" placeholder="000 0000 0000" required aria-describedby="h-phone e-phone">
+</div>
+<div class="hint" id="h-phone"><hq-t>请<wbr>先<wbr>选择<wbr>国家<wbr>/<wbr>地区<wbr>代码，<wbr>再<wbr>填<wbr>写<wbr>其余<wbr>号码。<wbr>如<wbr>以+<wbr>和<wbr>代码<wbr>开头<wbr>输入，<wbr>会<wbr>自动<wbr>选<wbr>中<wbr>对<wbr>应代码。</hq-t></div>
 <div class="err" id="e-phone" hidden></div>
 </div>
 
@@ -100,11 +127,11 @@
 <label for="f-product"><hq-t>关注<wbr>的<wbr>产品</hq-t></label>
 <select id="f-product" name="product">
 <option value="">不选择</option>
-<optgroup label="香港"><option value="hk-ins-1">保险第1名 · 分红型储蓄及终身寿险</option><option value="hk-ins-2">保险第2名 · 非分红型个人保险</option><option value="hk-ins-3">保险第3名 · 投资相连寿险（ILAS）</option><option value="hk-par-axa">保险 · AXA安盛 · WealthAhead II – Supreme</option><option value="hk-par-sunlife">保险 · Sun Life永明 · Stellar Multi-Currency II</option><option value="hk-par-chubb">保险 · Chubb安达 · MyLegacy Multi-Currency</option><option value="hk-par-ctflife">保险 · CTF Life周大福人寿 · Sky Leap 88</option><option value="hk-par-generali">保险 · Generali忠意 · LionAchiever Elite</option><option value="hk-inv-1">投资第1名 · 债券型基金</option><option value="hk-inv-2">投资第2名 · 混合资产基金</option><option value="hk-inv-3">投资第3名 · 股票型基金</option></optgroup>
-<optgroup label="新加坡"><option value="sg-ins-1">保险第1名 · 投资连结保险（ILP）</option><option value="sg-ins-2">保险第2名 · 非分红保险</option><option value="sg-ins-3">保险第3名 · 分红保险</option><option value="sg-inv-1">投资第1名 · 债券型基金</option><option value="sg-inv-2">投资第2名 · 货币市场基金</option><option value="sg-inv-3">投资第3名 · 股票型基金</option></optgroup>
-<optgroup label="英国"><option value="uk-ins-1">保险第1名 · 定期寿险</option><option value="uk-ins-2">保险第2名 · 收入保障保险</option><option value="uk-ins-3">保险第3名 · 保证型终身寿险</option><option value="uk-inv-1">投资第1名 · 货币市场基金</option><option value="uk-inv-2">投资第2名 · 混合资产基金</option><option value="uk-inv-3">投资第3名 · 债券型基金</option><option value="uk-dominion">投资 · Dominion 投资平台</option></optgroup>
-<optgroup label="加拿大"><option value="ca-ins-1">保险第1名 · 终身寿险</option><option value="ca-ins-2">保险第2名 · 定期寿险</option><option value="ca-ins-3">保险第3名 · 万能寿险</option><option value="ca-inv-1">投资第1名 · 股票型ETF</option><option value="ca-inv-2">投资第2名 · 债券型ETF</option><option value="ca-inv-3">投资第3名 · 债券型共同基金</option></optgroup>
-<optgroup label="日本"><option value="jp-ins-1">保险第1名 · 医疗保险</option><option value="jp-ins-2">保险第2名 · 终身寿险</option><option value="jp-ins-3">保险第3名 · 癌症保险</option><option value="jp-inv-1">投资第1名 · 海外股票型投资信托</option><option value="jp-inv-2">投资第2名 · 内外股票型投资信托</option><option value="jp-inv-3">投资第3名 · 内外资产复合型投资信托</option></optgroup>
+<optgroup label="香港"><option value="hk-ins-1" data-ko="보험 1위 · 유배당 저축·종신보험">保险第1名 · 分红型储蓄及终身寿险</option><option value="hk-ins-2" data-ko="보험 2위 · 무배당 개인보험">保险第2名 · 非分红型个人保险</option><option value="hk-ins-3" data-ko="보험 3위 · 투자연계보험(ILAS)">保险第3名 · 投资相连寿险（ILAS）</option><option value="hk-par-axa" data-ko="보험 · AXA · WealthAhead II – Supreme">保险 · AXA安盛 · WealthAhead II – Supreme</option><option value="hk-par-sunlife" data-ko="보험 · Sun Life · Stellar Multi-Currency II">保险 · Sun Life永明 · Stellar Multi-Currency II</option><option value="hk-par-chubb" data-ko="보험 · Chubb · MyLegacy Multi-Currency">保险 · Chubb安达 · MyLegacy Multi-Currency</option><option value="hk-par-ctflife" data-ko="보험 · CTF Life · Sky Leap 88">保险 · CTF Life周大福人寿 · Sky Leap 88</option><option value="hk-par-generali" data-ko="보험 · Generali · LionAchiever Elite">保险 · Generali忠意 · LionAchiever Elite</option><option value="hk-inv-1" data-ko="투자 1위 · 채권형 펀드">投资第1名 · 债券型基金</option><option value="hk-inv-2" data-ko="투자 2위 · 혼합자산 펀드">投资第2名 · 混合资产基金</option><option value="hk-inv-3" data-ko="투자 3위 · 주식형 펀드">投资第3名 · 股票型基金</option></optgroup>
+<optgroup label="新加坡"><option value="sg-ins-1" data-ko="보험 1위 · 투자연계보험(ILP)">保险第1名 · 投资连结保险（ILP）</option><option value="sg-ins-2" data-ko="보험 2위 · 무배당 보험">保险第2名 · 非分红保险</option><option value="sg-ins-3" data-ko="보험 3위 · 유배당 보험">保险第3名 · 分红保险</option><option value="sg-inv-1" data-ko="투자 1위 · 채권형 펀드">投资第1名 · 债券型基金</option><option value="sg-inv-2" data-ko="투자 2위 · 머니마켓 펀드">投资第2名 · 货币市场基金</option><option value="sg-inv-3" data-ko="투자 3위 · 주식형 펀드">投资第3名 · 股票型基金</option></optgroup>
+<optgroup label="英国"><option value="uk-ins-1" data-ko="보험 1위 · 정기보험">保险第1名 · 定期寿险</option><option value="uk-ins-2" data-ko="보험 2위 · 소득보장보험">保险第2名 · 收入保障保险</option><option value="uk-ins-3" data-ko="보험 3위 · 보증형 종신보험">保险第3名 · 保证型终身寿险</option><option value="uk-inv-1" data-ko="투자 1위 · 머니마켓 펀드">投资第1名 · 货币市场基金</option><option value="uk-inv-2" data-ko="투자 2위 · 혼합자산 펀드">投资第2名 · 混合资产基金</option><option value="uk-inv-3" data-ko="투자 3위 · 채권형 펀드">投资第3名 · 债券型基金</option><option value="uk-dominion" data-ko="투자 · Dominion 투자 플랫폼">投资 · Dominion 投资平台</option></optgroup>
+<optgroup label="加拿大"><option value="ca-ins-1" data-ko="보험 1위 · 종신보험">保险第1名 · 终身寿险</option><option value="ca-ins-2" data-ko="보험 2위 · 정기보험">保险第2名 · 定期寿险</option><option value="ca-ins-3" data-ko="보험 3위 · 유니버설 생명보험">保险第3名 · 万能寿险</option><option value="ca-inv-1" data-ko="투자 1위 · 주식형 ETF">投资第1名 · 股票型ETF</option><option value="ca-inv-2" data-ko="투자 2위 · 채권형 ETF">投资第2名 · 债券型ETF</option><option value="ca-inv-3" data-ko="투자 3위 · 채권형 뮤추얼펀드">投资第3名 · 债券型共同基金</option></optgroup>
+<optgroup label="日本"><option value="jp-ins-1" data-ko="보험 1위 · 의료보험">保险第1名 · 医疗保险</option><option value="jp-ins-2" data-ko="보험 2위 · 종신보험">保险第2名 · 终身寿险</option><option value="jp-ins-3" data-ko="보험 3위 · 암보험">保险第3名 · 癌症保险</option><option value="jp-inv-1" data-ko="투자 1위 · 해외주식형 투자신탁">投资第1名 · 海外股票型投资信托</option><option value="jp-inv-2" data-ko="투자 2위 · 내외주식형 투자신탁">投资第2名 · 内外股票型投资信托</option><option value="jp-inv-3" data-ko="투자 3위 · 내외자산복합형 투자신탁">投资第3名 · 内外资产复合型投资信托</option></optgroup>
 </select>
 </div>
 
@@ -172,7 +199,7 @@
 <div class="meta"><span><hq-t>资料<wbr>核<wbr>对<wbr>日期 2026-10-21</hq-t></span><span>草案</span><a href="about.html"><hq-t>关于<wbr>我们</hq-t></a><a href="contact.html">咨询</a><a href="privacy.html"><hq-t>隐私<wbr>政策</hq-t></a><a href="about.html#credits"><hq-t>图片<wbr>与<wbr>标志<wbr>来源</hq-t></a><span><hq-t>© 2026 hanQ 环球<wbr>金融</hq-t></span></div>
 </div>
 </footer>
-<script type="application/json" id="hq-i18n">{"err_name": "请填写姓名。", "err_name_long": "姓名请控制在30个字以内。", "err_phone": "请填写手机号码。", "err_phone_fmt": "请只填写数字和连字符，共10–13位。", "err_email": "请检查电子邮箱格式。", "err_msg_short": "咨询内容请至少填写10个字。", "err_msg_long": "咨询内容请控制在2,000字以内。", "err_consent": "须同意收集和使用个人信息，才能提交咨询。", "no_endpoint": "这是草案页面，咨询暂不会发送。咨询邮件服务（Apps Script）设置完成后，即可通过本表直接提交。", "sending": "正在提交… ", "resend": "重新提交 ", "fail": "咨询未能发送。您填写的内容仍然保留，请稍后再试。如果仍无法提交，请发送邮件至 {mail}。", "locale": "zh-CN"}</script>
+<script type="application/json" id="hq-i18n">{"err_name": "请填写姓名。", "err_name_long": "姓名请控制在30个字以内。", "err_phone": "请填写手机号码。", "err_phone_fmt": "请填写不含国家/地区代码的号码，只使用数字、连字符或空格。", "err_phone_len": "请检查号码位数。", "err_phone_other": "选择“其他”时，请以+和国家/地区代码开头填写号码。", "err_email": "请检查电子邮箱格式。", "err_msg_short": "咨询内容请至少填写10个字。", "err_msg_long": "咨询内容请控制在2,000字以内。", "err_consent": "须同意收集和使用个人信息，才能提交咨询。", "no_endpoint": "这是草案页面，咨询暂不会发送。咨询邮件服务（Apps Script）设置完成后，即可通过本表直接提交。", "sending": "正在提交… ", "resend": "重新提交 ", "fail": "咨询未能发送。您填写的内容仍然保留，请稍后再试。如果仍无法提交，请发送邮件至 {mail}。", "locale": "zh-CN"}</script>
 <script src="../js/contact.js"></script>
 </body>
 </html>
