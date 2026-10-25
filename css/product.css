@@ -61,6 +61,9 @@
 .risk li b { font-weight: 700; color: var(--ink); }
 .kr { background: var(--wine-tint); border-radius: var(--radius); padding: 40px 40px 28px; border-bottom: 0; border-left: 5px solid var(--wine); }
 .kr .risk { border-top-color: rgba(140, 27, 51, .18); }
+/* 체크포인트 아래 — 그 나라 세금 개요(guide/tax.html#tax-<cc>) */
+.kr-more { margin: 14px 0 0; }
+.kr-more a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font-size: 15px; font-weight: 700; color: var(--link); text-decoration: none; }
 .kr .risk li { border-bottom-color: rgba(140, 27, 51, .14); }
 .kr small { display: block; font-size: 13px; color: var(--wine); font-weight: 500; margin-top: 4px; }
 .src ol { margin: 0; padding-left: 22px; }

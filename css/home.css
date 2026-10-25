@@ -144,6 +144,9 @@ html:not(.js) .cols { margin-top: 20px; }
 
 /* 먼저 확인할 세 가지 */
 .chk-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin-top: 40px; }
+/* 체크 3개 아래 — 가이드 두 쪽으로 */
+.chk-more { display: flex; flex-wrap: wrap; gap: 6px 28px; margin: 28px 0 0; }
+.chk-more .tlink { min-height: 44px; }
 .chk-row { background: #fff; border-radius: var(--radius); padding: 28px 26px; box-shadow: var(--shadow-sm); }
 .chk-n { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 2px solid var(--wine); color: var(--wine); font-family: var(--font-num); font-weight: 700; font-size: 16px; }
 .chk-row h3 { margin: 18px 0 0; font-size: 19px; font-weight: var(--w-head); line-height: 1.45; letter-spacing: -.02em; }
