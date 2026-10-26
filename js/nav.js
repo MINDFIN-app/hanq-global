@@ -136,19 +136,32 @@
   [].slice.call(hdr.querySelectorAll('.gpanels')).forEach(function (el) { el.addEventListener('click', onLink); });
   if (drawer) drawer.querySelector('.drawer-body').addEventListener('click', onLink);
 
-  /* ---------- 스크롤에 따라 숨김·나타남 ---------- */
-  var lastY = window.scrollY, ticking = false;
-  function showHdr() { hdr.classList.remove('is-hidden'); root.classList.remove('hdr-gone'); }
-  function hideHdr() { hdr.classList.add('is-hidden'); root.classList.add('hdr-gone'); }
+  /* ---------- 스크롤에 따라 숨김·나타남 ----------
+     같은 방향으로 STEP 넘게 움직였을 때만 바꾼다 — 손가락을 뗄 때의 작은 되돌림에 머리글이 들락거리지 않게.
+     iPhone 이 맨 위·맨 아래에서 튕기는 동안(범위 밖 위치)은 무시한다 — 튕김이 '올림'으로 읽혀 머리글이 깜빡였다(2026-10-26). */
+  var lastY = window.scrollY, travel = 0, ticking = false;
+  var STEP = 24;
+  function showHdr() {
+    if (!hdr.classList.contains('is-hidden')) return;
+    hdr.classList.remove('is-hidden'); root.classList.remove('hdr-gone');
+  }
+  function hideHdr() {
+    if (hdr.classList.contains('is-hidden')) return;
+    hdr.classList.add('is-hidden'); root.classList.add('hdr-gone');
+  }
   function onScroll() {
     ticking = false;
-    var y = window.scrollY, dy = y - lastY;
+    var y = window.scrollY;
     hdr.classList.toggle('is-solid', y > 4);
-    if (openTop() || drawerOpen() || hdr.contains(document.activeElement)) { showHdr(); lastY = y; return; }
-    if (y < hdr.offsetHeight + 40) showHdr();
-    else if (dy > 6) hideHdr();
-    else if (dy < -6) showHdr();
+    if (openTop() || drawerOpen() || hdr.contains(document.activeElement)) { showHdr(); lastY = y; travel = 0; return; }
+    if (y < 0 || y > root.scrollHeight - window.innerHeight) return;
+    var dy = y - lastY;
     lastY = y;
+    if (y < hdr.offsetHeight + 40) { showHdr(); travel = 0; return; }
+    if (!dy) return;
+    travel = (dy > 0) === (travel > 0) ? travel + dy : dy;   /* 방향이 바뀌면 처음부터 */
+    if (travel > STEP) hideHdr();
+    else if (travel < -STEP) showHdr();
   }
   window.addEventListener('scroll', function () {
     if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }

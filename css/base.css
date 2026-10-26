@@ -209,9 +209,12 @@ html:not(.js) .gnav-btn { display: none; }
   ::view-transition-new(root) { animation: vtIn .42s var(--ease-out) both; }
   ::view-transition-group(*) { animation-duration: .55s; animation-timing-function: var(--ease-out); }
 }
-/* 스크롤에 맞춰 등장 — 지원하지 않는 브라우저는 처음부터 다 보인다 */
+/* 스크롤에 맞춰 등장 — 지원하지 않는 브라우저는 처음부터 다 보인다.
+   마우스를 쓰는 기기에서만(2026-10-26) — 휴대폰은 화면 스크롤을 페이지 계산과 따로 돌려, 스크롤 위치에 묶인 움직임이
+   손가락을 못 따라가 끊기다가 한 번에 따라붙었다(사용자 지적 "스크롤할 때마다 끊기거나 버퍼 걸렸다 확 내려감").
+   상품 페이지는 구역 전체(2,000px 넘는 것도)에 걸려 있어 더 심했다 */
 @supports (animation-timeline: view()) {
-  @media (prefers-reduced-motion: no-preference) {
+  @media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
     .reveal { animation: rise linear both; animation-timeline: view(); animation-range: entry 0% cover 24%; }
   }
 }
