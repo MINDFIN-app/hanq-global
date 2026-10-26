@@ -1,8 +1,13 @@
 /* 상품 리서치 페이지 (PROCEDURE 1-6) + 은행·증권사 페이지 (1-10) — 흰 히어로·나라 사진·카드 */
-.prog { position: fixed; top: 0; left: 0; right: 0; z-index: 90; height: 3px; pointer-events: none; }
+/* 읽기 진행 막대 — 스크롤 위치에 묶인 움직임이라 마우스 기기에서만 보인다(2026-10-26). 휴대폰에서는 이 막대 하나로도
+   상품·은행 페이지 스크롤이 끊겼다(사용자 지적 — 스크롤 등장을 끈 홈은 나아졌는데 이 막대가 있는 쪽만 남음) */
+.prog { display: none; position: fixed; top: 0; left: 0; right: 0; z-index: 90; height: 3px; pointer-events: none; }
 .prog i { display: block; height: 100%; background: var(--wine); transform-origin: left; transform: scaleX(0); }
 @supports (animation-timeline: scroll()) {
-  .prog i { animation: grow linear both; animation-timeline: scroll(root); }
+  @media (hover: hover) and (pointer: fine) {
+    .prog { display: block; }
+    .prog i { animation: grow linear both; animation-timeline: scroll(root); }
+  }
 }
 
 /* 히어로: 왼쪽 글, 오른쪽 나라 사진 (홈 나라 카드의 사진이 이 자리로 이어진다) */
