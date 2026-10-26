@@ -202,8 +202,10 @@ html:not(.js) .gnav-btn { display: none; }
 @keyframes vtOut { to { opacity: 0; transform: translateY(-6px); } }
 @keyframes vtIn { from { opacity: 0; transform: translateY(14px); } }
 
-/* 페이지 사이 화면 전환 — 같은 사이트 안 이동은 겹쳐 사라지고 올라오며, 나라 사진은 페이지를 건너 이어진다 */
-@media (prefers-reduced-motion: no-preference) {
+/* 페이지 사이 화면 전환 — 같은 사이트 안 이동은 겹쳐 사라지고 올라오며, 나라 사진은 페이지를 건너 이어진다.
+   마우스 기기에서만(2026-10-26) — 전환하는 동안(0.5초쯤) 새 페이지가 사진처럼 덮여 손가락 스크롤이 먹지 않아,
+   휴대폰에서는 상품 페이지에 들어가자마자 멈췄다 움직이는 것처럼 보였다 */
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
   @view-transition { navigation: auto; }
   ::view-transition-old(root) { animation: vtOut .18s var(--ease-inout) both; }
   ::view-transition-new(root) { animation: vtIn .42s var(--ease-out) both; }
