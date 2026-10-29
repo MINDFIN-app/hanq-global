@@ -50,7 +50,7 @@
 .car-dot[aria-current="true"] span { width: 30px; }
 .car-dot i { position: absolute; inset: 0; background: #fff; transform: scaleX(0); transform-origin: left; }
 .car-dot[aria-current="true"] i { transform: scaleX(1); }
-.car.is-playing .car-dot[aria-current="true"] i { animation: grow var(--car-ms, 7000ms) linear both; }
+.car.is-playing .car-dot[aria-current="true"] i { animation: grow var(--car-ms, 2000ms) linear both; }
 .car-pause:focus-visible, .car-prev:focus-visible, .car-next:focus-visible, .car-dot:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
 /* JS 가 없으면 첫 장만 보이고 조작 단추는 숨긴다 (나라 정보는 아래 카드·탭에 다 있음) */
 html:not(.js) .car-ctrl { display: none; }

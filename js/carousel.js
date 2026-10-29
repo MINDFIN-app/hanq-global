@@ -1,6 +1,7 @@
 /* 홈 히어로 나라 사진 슬라이드 (PROCEDURE 1-4)
-   - 7초마다 다음 나라로 넘어간다(겹쳐 사라지는 전환 + 사진이 천천히 당겨짐). 점에는 남은 시간이 차오른다.
+   - 2초마다 다음 나라로 넘어간다(겹쳐 사라지는 전환 + 사진이 천천히 당겨짐). 점에는 남은 시간이 차오른다.
    - 멈춤 단추로 세우고 다시 켤 수 있다. 마우스를 올리거나 키보드 초점이 들어오거나, 화면 밖·탭 숨김이면 잠시 멈춘다.
+   - 글꼴 로딩 화면(build.py FONT_WAIT_JS 의 html.fonts-wait)이 걷힌 뒤부터 센다 — 가려진 채 첫 나라가 지나가지 않게.
    - 좌우 화살표 키, 이전·다음 단추, 점, 손가락 밀기로 넘긴다. 보이지 않는 장은 inert 로 Tab 에 잡히지 않는다.
    - '동작 줄이기'면 자동 넘김을 하지 않는다. JS 가 없으면 첫 장만 보인다(home.css). */
 (function () {
@@ -10,15 +11,17 @@
   var slides = [].slice.call(car.querySelectorAll('.slide'));
   var dots = [].slice.call(car.querySelectorAll('.car-dot'));
   var pauseBtn = car.querySelector('.car-pause');
-  var MS = 7000;
+  var MS = 2000;   /* 2026-10-29 사용자 지시로 7초 → 2초 */
   /* 멈춤 단추 이름은 그 페이지 언어로 (build.py 가 넣는 #hq-i18n) */
   var T = {};
   try { T = JSON.parse(document.getElementById('hq-i18n').textContent); } catch (e) { /* 문구가 없으면 처음 이름 유지 */ }
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var index = 0, timer = null, userPaused = reduce, hover = false, focusIn = false, inView = true;
+  var root = document.documentElement;
+  var index = 0, timer = null, userPaused = reduce, hover = false, focusIn = false, inView = true,
+      loading = root.classList.contains('fonts-wait');
   car.style.setProperty('--car-ms', MS + 'ms');
 
-  function playing() { return !userPaused && !hover && !focusIn && inView && !document.hidden; }
+  function playing() { return !userPaused && !hover && !focusIn && inView && !loading && !document.hidden; }
 
   function schedule() {
     clearTimeout(timer);
@@ -85,6 +88,14 @@
     if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) show(index + (dx < 0 ? 1 : -1));
     x0 = y0 = null;
   });
+
+  if (loading && 'MutationObserver' in window) {
+    var mo = new MutationObserver(function () {
+      if (root.classList.contains('fonts-wait')) return;
+      loading = false; mo.disconnect(); schedule();
+    });
+    mo.observe(root, { attributes: true, attributeFilter: ['class'] });
+  } else loading = false;
 
   setPaused(userPaused);
   show(0);
